@@ -15,3 +15,4 @@ require __DIR__ . '/../config.php';
 require __DIR__ . '/../controllers/login.php';
 
 $app->run();
+

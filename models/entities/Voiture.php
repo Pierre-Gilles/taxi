@@ -6,18 +6,18 @@ class Voiture {
 	protected $immatriculationVoiture;
 	protected $marqueVoiture;
 	protected $modeleVoiture;
+	protected $imageVoiture;
 	protected $assuranceVoiture;
 	protected $contratAssuranceVoiture;
-	protected $imageVoiture;
-
-	function __construct($IDVoiture, $immatriculationVoiture, $marqueVoiture, $modeleVoiture,$assuranceVoiture, $contratAssuranceVoiture, $imageVoiture) {
+	
+	function __construct($IDVoiture, $immatriculationVoiture, $marqueVoiture, $modeleVoiture, $imageVoiture,$assuranceVoiture, $contratAssuranceVoiture) {
         $this->IDVoiture = $IDVoiture;
         $this->immatriculationVoiture = $immatriculationVoiture;
         $this->marqueVoiture = $marqueVoiture;
         $this->modeleVoiture = $modeleVoiture;
+        $this->imageVoiture = $imageVoiture;
         $this->assuranceVoiture = $assuranceVoiture;
         $this->contratAssuranceVoiture = $contratAssuranceVoiture;
-        $this->imageVoiture = $imageVoiture;
     }
 }
 

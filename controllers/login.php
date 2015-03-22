@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app->get('/', function () use ($app) {
+    $sql = "SELECT * FROM Chauffeur";
+    $post = $app['db']->fetchAssoc($sql);
     return $app['twig']->render('index.html', array());
 })->bind('homepage');
 
@@ -25,3 +27,5 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
+
+

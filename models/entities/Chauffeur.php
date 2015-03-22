@@ -7,17 +7,17 @@ class Chauffeur {
 	protected $prenomChauffeur;
 	protected $mailChauffeur;
 	protected $motdepasseChauffeur;
-	protected $numeroTelChauffeur;
 	protected $estPatron;
+	protected $numeroTelChauffeur;
 
-	function __construct($IDChauffeur, $nomChauffeur, $prenomChauffeur, $mailChauffeur, $motdepasseChauffeur,$numeroTelChauffeur, $estPatron) {
+	function __construct($IDChauffeur, $nomChauffeur, $prenomChauffeur, $mailChauffeur, $motdepasseChauffeur, $estPatron,$numeroTelChauffeur) {
         $this->IDChauffeur = $IDChauffeur;
         $this->nomChauffeur = $nomChauffeur;
         $this->prenomChauffeur = $prenomChauffeur;
         $this->mailChauffeur = $mailChauffeur;
         $this->motdepasseChauffeur = $motdepasseChauffeur;
-        $this->numeroTelChauffeur = $numeroTelChauffeur;
         $this->estPatron = $estPatron;
+        $this->numeroTelChauffeur = $numeroTelChauffeur;
     }
 }
 

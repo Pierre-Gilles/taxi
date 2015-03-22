@@ -13,7 +13,7 @@ use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
-
+use Silex\Provider\DoctrineServiceProvider;
 /** @var Application $app */
 
 /**
@@ -45,17 +45,12 @@ require $servicesDir . '/SecurityHandler.php';*/
 
 
 /*$app->register(new Silex\Provider\ValidatorServiceProvider());
+*/
 
-$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver'    => 'pdo_mysql',
-        'host'      => 'localhost',
-        'dbname'    => 'xxxx',
-        'user'      => 'xxxx',
-        'password'  => 'xxxx',
-        'charset'   => 'utf8',
-    ),
-));*/
+$dboptions = require  __DIR__."/database.php";
+$app->register(new DoctrineServiceProvider(), array(
+    'db.options' => $dboptions,
+));
 
 /**
  * Monolog will log requests and errors and allow you to add logging to your application. 

@@ -2,15 +2,15 @@
 
 
 class Utilisateur {
-	protected $codeUtilisateur;
+	protected $IDUtilisateur;
 	protected $nomUtilisateur;
 	protected $prenomUtilisateur;
 	protected $mailUtilisateur;
 	protected $motdepasseUtilisateur;
 	protected $numeroTelUtilisateur;
 
-	function __construct($codeUtilisateur, $nomUtilisateur, $prenomUtilisateur, $mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur) {
-        $this->codeUtilisateur = $codeUtilisateur;
+	function __construct($IDUtilisateur, $nomUtilisateur, $prenomUtilisateur, $mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur) {
+        $this->IDUtilisateur = $IDUtilisateur;
         $this->nomUtilisateur = $nomUtilisateur;
         $this->prenomUtilisateur = $prenomUtilisateur;
         $this->mailUtilisateur = $mailUtilisateur;
@@ -18,3 +18,4 @@ class Utilisateur {
         $this->numeroTelUtilisateur = $numeroTelUtilisateur;
     }
 }
+

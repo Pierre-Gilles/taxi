@@ -23,6 +23,47 @@ use Silex\Provider\DoctrineServiceProvider;
 $modelsDir = __DIR__ . '/models';
 $servicesDir = __DIR__ . '/services';
 
+/**
+ * Entities
+ */
+require $modelsDir .'/entities/Chauffeur.php';
+require $modelsDir .'/entities/Course.php';
+require $modelsDir .'/entities/Disponibilite.php';
+require $modelsDir .'/entities/Lieu.php';
+require $modelsDir .'/entities/Reservation.php';
+require $modelsDir .'/entities/ServiceCP.php';
+require $modelsDir .'/entities/tpsParcours.php';
+require $modelsDir .'/entities/Utilisateur.php';
+require $modelsDir .'/entities/Voiture.php';
+
+/**
+ * Mappers
+ */
+require $modelsDir .'/mappers/ChauffeurMapper.php';
+require $modelsDir .'/mappers/CourseMapper.php';
+require $modelsDir .'/mappers/DisponibiliteMapper.php';
+require $modelsDir .'/mappers/LieuMapper.php';
+require $modelsDir .'/mappers/ReservationMapper.php';
+require $modelsDir .'/mappers/ServiceCPMapper.php';
+require $modelsDir .'/mappers/tpsParcoursMapper.php';
+require $modelsDir .'/mappers/UtilisateurMapper.php';
+require $modelsDir .'/mappers/VoitureMapper.php';
+
+/**
+ * Repositories
+ */
+require $modelsDir .'/repositories/ChauffeurRepository.php';
+require $modelsDir .'/repositories/CourseRepository.php';
+require $modelsDir .'/repositories/DisponibiliteRepository.php';
+require $modelsDir .'/repositories/LieuRepository.php';
+require $modelsDir .'/repositories/ReservationRepository.php';
+require $modelsDir .'/repositories/ServiceCPRepository.php';
+require $modelsDir .'/repositories/tpsParcoursRepository.php';
+require $modelsDir .'/repositories/UtilisateurRepository.php';
+require $modelsDir .'/repositories/VoitureRepository.php';
+
+
+
 /*require $modelsDir . '/AbstractRepository.php';
 require $modelsDir . '/AdviceRepository.php';
 require $modelsDir . '/CityRepository.php';

@@ -2,10 +2,10 @@
 	$options = array(
         'driver'    => 'pdo_mysql',
         'host'      => 'localhost',
-        'port' 		=> '8889',
+        'port' 		=> '3306',
         'dbname'    => 'taxi',
         'user'      => 'root',
-        'password'  => 'root',
+        'password'  => '',
         'charset'   => 'utf8',
     );
 

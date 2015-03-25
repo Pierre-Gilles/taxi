@@ -8,4 +8,4 @@ var
 nbproject
 .idea
 .node_history
-./database.php
+database.php

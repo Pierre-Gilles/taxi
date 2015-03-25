@@ -7,8 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app->get('/', function () use ($app) {
-    $chauffeurrepo = new ChauffeurRepository($app['db']);
-    $chauffeurs = $chauffeurrepo->getAllChauffeurs();
+    $chauffeurs = $app['chauffeur_repository']->getAllChauffeurs();
     //return $app->json($chauffeurs);
     return $app['twig']->render('index.html', array('chauffeurs'=>$chauffeurs));
 })->bind('homepage');

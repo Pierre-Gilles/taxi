@@ -12,7 +12,7 @@ $app->get('/', function () use ($app) {
     return $app['twig']->render('index.html', array('chauffeurs'=>$chauffeurs));
 })->bind('homepage');
 
-$app->error(function (\Exception $e, Request $request, $code) use ($app) {
+/*$app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;
     }
@@ -27,5 +27,5 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
-
+*/
 

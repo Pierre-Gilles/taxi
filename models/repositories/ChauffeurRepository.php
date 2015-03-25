@@ -12,10 +12,10 @@ class ChauffeurRepository{
 		$statement = $this->db->prepare('SELECT * FROM chauffeur');
 		$statement->execute();
 		$chauffeurs = $statement->fetchAll();
-		/*$chauffeurMapper = new ChauffeurMapper();
+		$chauffeurMapper = new ChauffeurMapper();
 		for($i = 0; $i < count($chauffeurs); $i++){
 			$chauffeurs[$i] = $chauffeurMapper->transform($chauffeurs[$i]);
-		}*/
+		}
 		return $chauffeurs;
 	}
 

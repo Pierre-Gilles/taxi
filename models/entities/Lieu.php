@@ -17,5 +17,7 @@ class Lieu {
         $this->longitudeLieu = $longitudeLieu;
         $this->latitudeLieu = $latitudeLieu;
     }
+
+
 }
 

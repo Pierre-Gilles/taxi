@@ -14,6 +14,7 @@ use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
+
 /** @var Application $app */
 
 /**
@@ -130,11 +131,12 @@ $app->register(new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/var/cache/profiler',
 ));
 
-/*
-$app['advice_repository'] = $app->share(function() use ($app) {
-    return new AdviceRepository($app['db']);
+/*$app['chauffeur_repository'] = $app->share(function() use ($app) {
+    return new ChauffeurRepository($app['db']);
 });
+*/
 
+/*
 $app['user_repository'] = $app->share(function() use ($app) {
     return new UserRepository($app['db']);
 });

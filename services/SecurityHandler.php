@@ -11,18 +11,12 @@ class SecurityHandler
     protected $userRepository;
 
     /**
-     * @var TokenRepository
-     */
-    protected $tokenRepository;
-
-    /**
      * @param UserRepository $userRepository
      * @param TokenRepository $tokenRepository
      */
-    public function __construct(UserRepository $userRepository, TokenRepository $tokenRepository)
+    public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
-        $this->tokenRepository = $tokenRepository;
     }
 
     /**

@@ -65,7 +65,11 @@ require $modelsDir .'/repositories/tpsParcoursRepository.php';
 require $modelsDir .'/repositories/UtilisateurRepository.php';
 require $modelsDir .'/repositories/VoitureRepository.php';
 
+/**
+ * Services
+ */
 
+require $servicesDir .'/SecurityHandler.php';
 
 /*require $modelsDir . '/AbstractRepository.php';
 require $modelsDir . '/AdviceRepository.php';
@@ -134,71 +138,50 @@ $app->register(new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/var/cache/profiler',
 ));
 
+/**
+ * Sharing all the repository, so they are accessible anywhere
+ */
+
 $app['chauffeur_repository'] = $app->share(function() use ($app) {
     return new ChauffeurRepository($app['db']);
 });
 
-/*
-$app['user_repository'] = $app->share(function() use ($app) {
-    return new UserRepository($app['db']);
+$app['course_repository'] = $app->share(function() use ($app) {
+    return new CourseRepository($app['db']);
 });
 
-$app['city_repository'] = $app->share(function() use ($app) {
-    return new CityRepository($app['db']);
+$app['disponibilite_repository'] = $app->share(function() use ($app) {
+    return new DisponibiliteRepository($app['db']);
 });
 
-$app['pollen_repository'] = $app->share(function() use ($app) {
-    return new PollenRepository($app['db']);
+$app['lieu_repository'] = $app->share(function() use ($app) {
+    return new LieuRepository($app['db']);
 });
 
-$app['token_repository'] = $app->share(function() use ($app) {
-    return new TokenRepository($app['db']);
+$app['reservation_repository'] = $app->share(function() use ($app) {
+    return new ReservationRepository($app['db']);
 });
 
-$app['setting_repository'] = $app->share(function() use ($app) {
-    return new SettingRepository($app['db']);
+$app['serviceCP_repository'] = $app->share(function() use ($app) {
+    return new ServiceCPRepository($app['db']);
 });
 
-$app['location_repository'] = $app->share(function() use ($app) {
-    return new LocationRepository($app['db']);
+$app['tpsparcours_repository'] = $app->share(function() use ($app) {
+    return new tpsParcoursRepository($app['db']);
 });
 
-$app['notification_repository'] = $app->share(function() use ($app) {
-    return new NotificationsRepository($app['db']);
+$app['utilisateur_repository'] = $app->share(function() use ($app) {
+    return new UtilisateurRepository($app['db']);
 });
 
-$app['followed_repository'] = $app->share(function() use ($app) {
-    return new FollowedRepository($app['db']);
+$app['voiture_repository'] = $app->share(function() use ($app) {
+    return new VoitureRepository($app['db']);
 });
 
-$app['device_repository'] = $app->share(function() use ($app) {
-    return new DeviceRepository($app['db']);
+/**
+ * Sharing all the services, so they are accessible anywhere
+ */
+
+$app['securityhandler_service'] = $app->share(function() use ($app) {
+    return new SecurityHandler($app['utilisateur_repository']);
 });
-
-$app['stats_repository'] = $app->share(function() use ($app) {
-    return new StatsRepository($app['db']);
-});
-
-
-$app['request_validator'] = $app->share(function() use ($app) {
-    return new RequestValidator($app['validator']);
-});
-
-$app['security_handler'] = $app->share(function() use ($app) {
-    return new SecurityHandler($app['user_repository'], $app['token_repository']);
-});
-
-$app['gcm_sender'] = $app->share(function() use ($app) {
-    return new GcmSender($app['gcm_key']);
-});
-
-$app['apple_sender'] = $app->share(function() use ($app) {
-    return new AppleSender();
-});
-
-$app['notifications_sender'] = $app->share(function() use ($app) {
-    return new DelegatedSender([
-        $app['gcm_sender'],
-        $app['apple_sender'],
-    ]);
-});*/

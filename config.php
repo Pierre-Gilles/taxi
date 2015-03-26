@@ -14,6 +14,9 @@ use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\UrlGeneratorServiceProvider;
+use Silex\Provider\SessionServiceProvider;
+
 /** @var Application $app */
 
 /**
@@ -102,10 +105,11 @@ $app->register(new MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__.'/var/logs/silex_dev.log',
 ));
 
-$app->register(new RoutingServiceProvider());
+//$app->register(new RoutingServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new ServiceControllerServiceProvider());
-
+$app->register(new UrlGeneratorServiceProvider());
+$app->register(new SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/templates',
     'twig.options' => array('cache' => __DIR__.'/var/cache/twig')
@@ -130,11 +134,11 @@ $app->register(new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/var/cache/profiler',
 ));
 
-/*
-$app['advice_repository'] = $app->share(function() use ($app) {
-    return new AdviceRepository($app['db']);
+$app['chauffeur_repository'] = $app->share(function() use ($app) {
+    return new ChauffeurRepository($app['db']);
 });
 
+/*
 $app['user_repository'] = $app->share(function() use ($app) {
     return new UserRepository($app['db']);
 });

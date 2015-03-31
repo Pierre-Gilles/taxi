@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    Welcome to your new Silex Application!
+    {{ app.translator.trans('signup') }}
     <p>Liste de chauffeurs : </p>
     <ul>
         {% for chauffeur in chauffeurs %}

@@ -17,6 +17,8 @@ use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\FormServiceProvider;
+use Silex\Provider\TranslationServiceProvider;
+use Symfony\Component\Translation\Loader\YamlFileLoader;
 
 /** @var Application $app */
 
@@ -72,29 +74,10 @@ require $modelsDir .'/repositories/VoitureRepository.php';
 
 require $servicesDir .'/SecurityHandler.php';
 
-/*require $modelsDir . '/AbstractRepository.php';
-require $modelsDir . '/AdviceRepository.php';
-require $modelsDir . '/CityRepository.php';
-require $modelsDir . '/DeviceRepository.php';
-require $modelsDir . '/FollowedRepository.php';
-require $modelsDir . '/LocationRepository.php';
-require $modelsDir . '/NotificationsRepository.php';
-require $modelsDir . '/PollenRepository.php';
-require $modelsDir . '/StatsRepository.php';
-require $modelsDir . '/SettingRepository.php';
-require $modelsDir . '/TokenRepository.php';
-require $modelsDir . '/UserRepository.php';
 
-require $servicesDir . '/senders/SenderInterface.php';
-require $servicesDir . '/senders/AppleSender.php';
-require $servicesDir . '/senders/GcmSender.php';
-require $servicesDir . '/senders/DelegatedSender.php';
-require $servicesDir . '/RequestValidator.php';
-require $servicesDir . '/SecurityHandler.php';*/
-
-
-/*$app->register(new Silex\Provider\ValidatorServiceProvider());
-*/
+/**
+ * BDD Connections
+ */
 
 $dboptions = require  __DIR__."/database.php";
 $app->register(new DoctrineServiceProvider(), array(
@@ -139,6 +122,27 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
 $app->register(new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/var/cache/profiler',
 ));
+
+
+/**
+ * Registering Translation service provider
+ */
+
+$app->register(new TranslationServiceProvider(), array(
+    'locale_fallbacks' => array('fr'),
+));
+
+/**
+ * Adding translation files
+ */
+$app['translator'] = $app->share($app->extend('translator', function($translator, $app) {
+    $translator->addLoader('yaml', new YamlFileLoader());
+
+    $translator->addResource('yaml', __DIR__.'/locales/en.yml', 'en');
+    $translator->addResource('yaml', __DIR__.'/locales/fr.yml', 'fr');
+
+    return $translator;
+}));
 
 /**
  * Sharing all the repository, so they are accessible anywhere

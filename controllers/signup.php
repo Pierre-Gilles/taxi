@@ -19,10 +19,10 @@ $app->get('/signup', function (Request $request) use ($app) {
 
     $form = $app['form.factory']->createBuilder('form', $data)
         ->add('name', 'text', array(
-            'constraints' => array(new Assert\NotBlank()))
+            'constraints' => array(new Assert\NotBlank())
         ))
          ->add('surname', 'text', array(
-        'constraints' => array(new Assert\NotBlank()))
+        'constraints' => array(new Assert\NotBlank())
         ))
         ->add('email', 'text', array(
             'constraints' => new Assert\Email()

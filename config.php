@@ -16,6 +16,7 @@ use Silex\Provider\WebProfilerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\FormServiceProvider;
 
 /** @var Application $app */
 
@@ -114,6 +115,7 @@ $app->register(new ValidatorServiceProvider());
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new SessionServiceProvider());
+$app->register(new FormServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/templates',
     'twig.options' => array('cache' => __DIR__.'/var/cache/twig')

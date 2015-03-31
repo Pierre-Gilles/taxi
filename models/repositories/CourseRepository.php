@@ -17,6 +17,4 @@ class CourseRepository{
 		return $chauffeurs;
 	}
 
-    }
-
 }

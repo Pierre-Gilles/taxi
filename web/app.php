@@ -19,6 +19,7 @@ require __DIR__ . '/../controllers/security.php';
 require __DIR__ . '/../controllers/home.php';
 require __DIR__ . '/../controllers/login.php';
 require __DIR__ . '/../controllers/contact.php';
+require __DIR__ . '/../controllers/signup.php';
 
 /**
  * Starting app

@@ -36,7 +36,7 @@ class ChauffeurRepository{
 	}
 
 	//Afficher toutes les réservations attribuées à un chauffeur à la date d’aujourd’hui (exemple ici avec le chauffeur n°1)
-	public function datereservationsChauffeurs(){
+	public function reservationsChauffeursToday(){
 		$statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, nomUtilisateur, mailUtilisateur, numTelUtilisateur
 											FROM Réservation NATURAL JOIN Utilisateur, Réservation NATURAL JOIN Chauffeur
 											GROUP BY codeRéservation
@@ -54,7 +54,7 @@ class ChauffeurRepository{
 
 
 	//Afficher toutes les réservations attribuées à un chauffeur à une date donnée. 
-	public function datereservationsChauffeurs($date){
+	public function reservationsChauffeursDate($date){
 		$statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, nomUtilisateur, mailUtilisateur, numTelUtilisateur
 											FROM Réservation NATURAL JOIN Utilisateur, Réservation NATURAL JOIN Chauffeur
 											GROUP BY codeRéservation

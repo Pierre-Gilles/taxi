@@ -10,8 +10,9 @@ class Reservation {
     protected $IDLieu;
     protected $IDLieu_a_destination_de;
     protected $IDVoiture;
+    protected $course_IDcourse; 
 
-    function __construct($datetimeCreation, $IDChauffeur, $IDUtilisateur, $IDLieu, $IDLieu_a_destination_de, $IDVoiture, $IDReservation, $datetimeReservation)
+    function __construct($datetimeCreation, $IDChauffeur, $IDUtilisateur, $IDLieu, $IDLieu_a_destination_de, $IDVoiture, $IDReservation, $datetimeReservation, $course_IDcourse)
     {
         $this->datetimeCreation = $datetimeCreation;
         $this->IDChauffeur = $IDChauffeur;
@@ -21,6 +22,7 @@ class Reservation {
         $this->IDVoiture = $IDVoiture;
         $this->IDReservation = $IDReservation;
         $this->datetimeReservation = $datetimeReservation;
+        $this->course_IDcourse = $course_IDcourse;
     }
 
     /**
@@ -141,6 +143,22 @@ class Reservation {
     public function getIDVoiture()
     {
         return $this->IDVoiture;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCourseIDcourse()
+    {
+        return $this->course_IDcourse;
+    }
+
+    /**
+     * @param mixed $course_IDcourse
+     */
+    public function setCourseIDcourse($course_IDcourse)
+    {
+        $this->course_IDcourse = $course_IDcourse;
     }
 
     /**

@@ -21,7 +21,7 @@ class ReservationRepository
 
 
 	public function infosReservation(){
-		$statement = $this->db->prepare("SELECT codeCourse, codeReservation, datetimeReservation as Heure, nomChauffeur, pénomChauffeur, marqueVoiture, modèleVoiture, nomUtilisateur, prénomUtilisateur, mailUtilisateur, numeroTelUtilisateur, AdresseLieu as Adresse_Prise_en Charge, villeLieu as Ville_Prise_en Charge, codePostalLieu CP_Prise_en Charge, 
+		$statement = $this->db->prepare("SELECT codeCourse, codeReservation, datetimeReservation as Heure, nomChauffeur, pénomChauffeur, marqueVoiture, modèleVoiture, nomUtilisateur, prénomUtilisateur, mailUtilisateur, numeroTelUtilisateur, AdresseLieu as Adresse_Prise_en Charge, villeLieu as Ville_Prise_en Charge, codePostalLieu CP_Prise_en Charge,
 											FROM Réservation NATURAL JOIN Chauffeur, Réservation NATURAL JOIN Voiture, Réservation NATURAL JOIN Utilisateur, Réservation NATURAL JOIN Lieu
 											GROUP BY codeCourse, codeReservation ;
 										");

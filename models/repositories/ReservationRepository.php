@@ -1,15 +1,21 @@
 <?php
 	
-class ReservationRepository{
+class ReservationRepository
+{
 
-	protected $db;
+    protected $db;
 
-	final public function __construct($db) {
-       	$this->db = $db;
+    final public function __construct($db)
+    {
+        $this->db = $db;
     }
 
-	public function createReservation($reservation){
+    public function createReservation($codeReservation, $datetimeReservation, $codeChauffeur, $codeUtilisateur, $codeLieu, $codeLieu_a_destination_de, $codeVoiture, $courses_codecourse){
+        
+    }
 
+    public function createReservation(
+        $reservation->getIDre    INSERT INTO `Voiture` (`codeVoiture`, `marqueVoiture`, `modèleVoiture`, `imageVoiture`) VALUES;
 	}
 
 
@@ -29,7 +35,4 @@ class ReservationRepository{
 		return $disponibilite;
 	}
 
-	
-
-    
 }

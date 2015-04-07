@@ -8,13 +8,21 @@ class UtilisateurRepository{
        	$this->db = $db;
     }
 
-	public function createUser($IDUtilisateur, $nomUtilisateur, $prenomUtilisateur, $mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur){
+	public function createUser($nomUtilisateur, $prenomUtilisateur, $mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur){
 		$motdepasseUtilisateur = password_hash($motdepasseUtilisateur, PASSWORD_DEFAULT);
-
+		return new Utilisateur($nomUtilisateur, $prenomUtilisateur,$mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur);
 	}
 
-	private function validateUser($IDUtilisateur, $nomUtilisateur, $prenomUtilisateur, $mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur){
-
+	public function saveUser(Utilisateur $user){
+		$sql = "INSERT INTO Utilisateur(nomUtilisateur, prénomUtilisateur, mailUtilisateur, motdepasseUtilisateur,numeroTelUtilisateur) ";
+		$sql .= " VALUES(:name,:surname,:mail,:password,:phone) ";
+		$statement = $this->db->prepare($sql);
+		$statement->bindValue("name", $user->getNomUtilisateur());
+		$statement->bindValue("surname", $user->getPrenomUtilisateur());
+		$statement->bindValue("mail", $user->getMailUtilisateur());
+		$statement->bindValue("password", $user->getMotdepasseUtilisateur());
+		$statement->bindValue("phone", $user->getNumeroTelUtilisateur());
+		$statement->execute();
 	}
 
 	//Afficher tous les utilisateurs ayant effectué une réservation 

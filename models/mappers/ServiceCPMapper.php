@@ -3,8 +3,7 @@
 class ServiceCPMapper{
 
 	function transform($array){
-		return new ServiceCP($array['codeServiceCP'],$array['libelleServiceCP'],$array['prixServiceCP']);
+		return new ServiceCP($array['IDServiceCP'],$array['libelleServiceCP'],$array['prixServiceCP']);
 	}
 }
 
-	

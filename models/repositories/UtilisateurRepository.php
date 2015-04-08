@@ -3,8 +3,10 @@
 class UtilisateurRepository{
 
 	protected $db;
+	protected $utilisateurMapper;
 
-	final public function __construct($db) {
+	final public function __construct($db,UtilisateurMapper $utilisateurMapper) {
+		$this->utilisateurMapper = $utilisateurMapper;
        	$this->db = $db;
     }
 
@@ -23,6 +25,17 @@ class UtilisateurRepository{
 		$statement->bindValue("password", $user->getMotdepasseUtilisateur());
 		$statement->bindValue("phone", $user->getNumeroTelUtilisateur());
 		$statement->execute();
+	}
+
+	public function login($mail,$password){
+		$sql = "SELECT * FROM Utilisateur WHERE mailUtilisateur = ?";
+		$user = $this->db->fetchAssoc($sql, array($mail));
+		if(password_verify($password, $user['motdepasseUtilisateur'])){
+			$user = $this->utilisateurMapper->transform($user);
+			return $user;
+		}else{
+			return null;
+		}
 	}
 
 	//Afficher tous les utilisateurs ayant effectué une réservation 

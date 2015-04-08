@@ -145,6 +145,14 @@ $app['translator'] = $app->share($app->extend('translator', function($translator
 }));
 
 /**
+ * Sharing all the mappers
+ */
+
+$app['utilisateur_mapper'] = $app->share(function() use ($app) {
+    return new UtilisateurMapper();
+});
+
+/**
  * Sharing all the repository, so they are accessible anywhere
  */
 
@@ -177,12 +185,14 @@ $app['tpsparcours_repository'] = $app->share(function() use ($app) {
 });
 
 $app['utilisateur_repository'] = $app->share(function() use ($app) {
-    return new UtilisateurRepository($app['db']);
+    return new UtilisateurRepository($app['db'], $app['utilisateur_mapper']);
 });
 
 $app['voiture_repository'] = $app->share(function() use ($app) {
     return new VoitureRepository($app['db']);
 });
+
+
 
 /**
  * Sharing all the services, so they are accessible anywhere

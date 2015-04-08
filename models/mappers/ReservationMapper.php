@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * Class ReservationMapper
+ */
 class ReservationMapper{
 
-	function transform($array){
-		return new Reservation($array['codeReservation'],$array['datetimeReservation'],$array['datetimeCreation']);
+    /**
+     * @param $array
+     * @return Reservation
+     */
+    function transform($array){
+		return new reservation($array['datetimeCreation'],$array['IDChauffeur'],$array['IDUtilisateur'], $array['IDLieu'], $array['IDLieu_a_destination_de'], $array['IDVoiture'],$array['IDVoiture'], $array['datetimeReservation'], $array['datetimeReservation'], $array['course_IDcourse'] );
 	}
 }
-
-	

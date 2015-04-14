@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
-$app->match('/signup', function (Request $request) use ($app) {
+$app->match('/{_locale}/signup', function (Request $request) use ($app) {
 
     $data = array(
         'name' => '',

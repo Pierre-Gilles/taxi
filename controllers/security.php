@@ -11,11 +11,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 $app->before(function (Request $request, Application $app) {
     //echo json_encode($app['session']->get('user'));
     //$app['session']->set('user', array('username' => "COUCOU"));
-    $openPages = array("login", "homepag2e", "signup");
+    $openPages = array("login", "homepage", "signup");
     $requireAdmin = array("admin");
+
+    // if the
     if(!in_array($request->get("_route"),$openPages)) {
         if(!$app['session']->get('connected')){
-            return $app->redirect('/login');
+            return $app->redirect($app['url_generator']->generate('login'));
         }
     }
 

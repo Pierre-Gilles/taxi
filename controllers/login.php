@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
-$app->match('/login', function (Request $request) use ($app) {
+$app->match('/{_locale}/login', function (Request $request) use ($app) {
 
     $data = array(
         'email' => '',
@@ -38,7 +38,7 @@ $app->match('/login', function (Request $request) use ($app) {
         if(!is_null($user)){
             $app['session']->set('connected', true);
             $app['session']->set('user', $user);
-            return $app->redirect('/fr');
+            return $app->redirect('/');
         }else{
 
         }

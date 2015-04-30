@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<section id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Registration</h1>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li class="active">Registration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section><!--/#title-->
+
+<section id="registration" class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'location_time'|trans }}</th>
+            <th>{{ 'departure'|trans }}</th>
+            <th>{{ 'arrival'|trans }}</th>
+            <th>{{ 'departure_time'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <th scope="row">{{ order.datetimeCreation }}</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+</section><!--/#registration-->
+
+{% endblock %}

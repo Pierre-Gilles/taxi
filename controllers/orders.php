@@ -15,37 +15,45 @@ $app->match('/{_locale}/orders', function (Request $request) use ($app) {
 
 
     $data = array(
-        'adresse' => '',
-        'surname' => '',
-        'email' => '',
-        'phone' => ''
+        'address' => '',
+        'city' => '',
+        'postcode' => '',
+        'adress_destination' => '',
+        'city_destination' => '',
+        'postcode_destination' => ''
     );
 
     /**
      * Creating form
      */
     $form = $app['form.factory']->createBuilder('form', $data)
-        ->add('name', 'text', array(
-            'attr' => array('placeholder' => 'Name'),
+        ->add('address', 'text', array(
+            'attr' => array('placeholder' => 'Address'),
             'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('surname', 'text', array(
-            'attr' => array('placeholder' => 'Surname'),
+        ->add('city', 'text', array(
+            'attr' => array('placeholder' => 'City'),
             'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('email', 'text', array(
-            'attr' => array('placeholder' => 'Email'),
-            'constraints' => new Assert\Email()
+        ->add('postcode', 'text', array(
+            'attr' => array('placeholder' => 'Postcode'),
+            'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('phone', 'text', array(
-            'attr' => array('placeholder' => 'Phone'),
-            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
+        ->add('address_destination', 'text', array(
+            'attr' => array('placeholder' => 'Address'),
+            'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('password', 'repeated', array(
-            'type' => 'password',
-            'first_options'  => array('label' => 'Mot de passe'),
-            'second_options' => array( 'label' => 'Mot de passe (validation)'),
-            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
+        ->add('city_destination', 'text', array(
+            'attr' => array('placeholder' => 'City'),
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('postcode_destination', 'text', array(
+            'attr' => array('placeholder' => 'Postcode'),
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('date', 'date', array(
+            'attr' => array('placeholder' => 'When'),
+            'constraints' => array(new Assert\NotBlank())
         ))
         ->getForm();
 
@@ -54,10 +62,10 @@ $app->match('/{_locale}/orders', function (Request $request) use ($app) {
     if ($form->isValid()) {
         $formData = $form->getData();
 
-        $newUser = $app['utilisateur_repository']->createUser($formData['name'],$formData['surname'],$formData['email'], $formData['password'], $formData['phone']);
-        $app['utilisateur_repository']->saveUser($newUser);
+       // $newUser = $app['utilisateur_repository']->createUser($formData['name'],$formData['surname'],$formData['email'], $formData['password'], $formData['phone']);
+        //$app['utilisateur_repository']->saveUser($newUser);
         //return $app->redirect('...');
     }
 
-    return $app['twig']->render('orders.html', array('orders' => $orders, 'locale' => $app['session']->get('language')));
+    return $app['twig']->render('orders.html', array('orders' => $orders, 'form' => $form->createView()));
 })->bind('orders');

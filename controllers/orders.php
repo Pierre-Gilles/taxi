@@ -8,10 +8,56 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
-$app->match('/orders', function (Request $request) use ($app) {
-    $orders = $app['reservation_repository']->getAllReservation($app['session']->get('user'));
+$app->match('/{_locale}/orders', function (Request $request) use ($app) {
+   // $orders = $app['reservation_repository']->getAllReservation($app['session']->get('user'));
+    $orders = $app['reservation_repository']->getAllReservation(new Utilisateur( "Jean", "Jacq", "dsf", "sfs", "fdf", 11));
+    //$lieux = $app['lieu_repository']->getLieuClient(11);
 
-    return $app['twig']->render('orders.html', array('orders' => $orders));
 
+    $data = array(
+        'adresse' => '',
+        'surname' => '',
+        'email' => '',
+        'phone' => ''
+    );
 
+    /**
+     * Creating form
+     */
+    $form = $app['form.factory']->createBuilder('form', $data)
+        ->add('name', 'text', array(
+            'attr' => array('placeholder' => 'Name'),
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('surname', 'text', array(
+            'attr' => array('placeholder' => 'Surname'),
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('email', 'text', array(
+            'attr' => array('placeholder' => 'Email'),
+            'constraints' => new Assert\Email()
+        ))
+        ->add('phone', 'text', array(
+            'attr' => array('placeholder' => 'Phone'),
+            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
+        ))
+        ->add('password', 'repeated', array(
+            'type' => 'password',
+            'first_options'  => array('label' => 'Mot de passe'),
+            'second_options' => array( 'label' => 'Mot de passe (validation)'),
+            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
+        ))
+        ->getForm();
+
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+        $formData = $form->getData();
+
+        $newUser = $app['utilisateur_repository']->createUser($formData['name'],$formData['surname'],$formData['email'], $formData['password'], $formData['phone']);
+        $app['utilisateur_repository']->saveUser($newUser);
+        //return $app->redirect('...');
+    }
+
+    return $app['twig']->render('orders.html', array('orders' => $orders, 'locale' => $app['session']->get('language')));
 })->bind('orders');

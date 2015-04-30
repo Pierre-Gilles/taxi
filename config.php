@@ -109,7 +109,8 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
 
     $twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) use ($app) {
-        return $app['request_stack']->getMasterRequest()->getBasepath().'/assets/'.$asset;
+        //return $app['request_stack']->getMasterRequest()->getBasepath().'/assets/'.$asset;
+        return '/assets/'.$asset;
     }));
 
     $twig->addExtension(new Twig_Extensions_Extension_Intl());

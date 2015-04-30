@@ -19,4 +19,20 @@ class LieuRepository{
 		// return the ID of the inserted Lieu
 		return $this->db->lastInsertId();
 	}
+
+	public function getLieuClient(Utilisateur $user){
+		$sql = "SELECT DISTINCT Lieu.codeLieu, adresseLieu, villeLieu, codePostalLieu  FROM Lieu  ";
+		$sql .= " LEFT JOIN Réservation ON ( (Réservation.codeLieu_a_destination_de = Lieu.codeLieu) OR (Réservation.codeLieu = Lieu.codeLieu) )  ";
+		$sql .= " WHERE codeUtilisateur = :id";
+		$statement = $this->db->prepare($sql);
+		$statement->bindValue("id", $user->getIDUtilisateur());
+		$statement->execute();
+		$lieux = $statement->fetchAll();
+
+		$lieuMapper = new lieuMapper();
+		for($i = 0; $i < count($lieux); $i++){
+			$lieux[$i] = $lieuMapper->transform($lieux[$i]);
+		}
+		return $lieux;
+	}
 }

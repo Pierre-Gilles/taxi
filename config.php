@@ -112,6 +112,8 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
         return $app['request_stack']->getMasterRequest()->getBasepath().'/assets/'.$asset;
     }));
 
+    $twig->addExtension(new Twig_Extensions_Extension_Intl());
+
     return $twig;
 });
 /**

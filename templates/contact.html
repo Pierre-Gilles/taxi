@@ -1,6 +1,47 @@
 {% extends "layout.html" %}
 
 {% block content %}
-La page contact
+    <section id="title" class="emerald">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>Contact</h1>
+                    <p></p>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="breadcrumb pull-right">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Pages</a></li>
+                        <li class="active">Contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section><!--/#title-->
 
+    <section id="contact" class="container">
+        <form class="center" role="form" method="POST" action="" >
+
+
+            <fieldset class="contact-form">
+                {{ form_widget(form) }}
+                <!--<div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="email" name="email" placeholder="E-mail" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password_confirm" name="password_confirm" placeholder="Password (Confirm)" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-md btn-block">Register</button>
+                </div>-->
+                <input type="submit" class="form-control" value="{{ 'Send'|trans }}" />
+            </fieldset>
+        </form>
+    </section><!--/#contact-->
 {% endblock %}

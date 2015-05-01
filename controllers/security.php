@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 $app->before(function (Request $request, Application $app) {
     //echo json_encode($app['session']->get('user'));
     //$app['session']->set('user', array('username' => "COUCOU"));
-    $openPages = array("login", "homepage", "signup");
+    $openPages = array("login", "homepage", "signup","contact");
     $requireAdmin = array("admin");
 
     // if the

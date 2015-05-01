@@ -34,8 +34,8 @@
         <tbody>
         {% for order in orders %}
             <tr>
-                <th scope="row">{{ order.datetimeCreation }}</th>
-                <td>Mark</td>
+                <th scope="row">{{ order.datetimeReservation|localizeddate('full', 'medium', app.request.locale)|capitalize  }}</th>
+                <td></td>
                 <td>Otto</td>
                 <td>@mdo</td>
             </tr>
@@ -45,7 +45,33 @@
     </table>
 
 
+            <form class="form-inline" role="form" method="POST" action="" >
+
+
+                {{ form_widget(form) }}
+                <!--<div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="email" name="email" placeholder="E-mail" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password_confirm" name="password_confirm" placeholder="Password (Confirm)" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-md btn-block">Register</button>
+                </div>-->
+                <input type="submit" class="form-control" value="{{ 'order_taxi'|trans }}" />
+            </form>
+
 
 </section><!--/#registration-->
+
+
+
+
 
 {% endblock %}

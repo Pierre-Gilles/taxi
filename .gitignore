@@ -10,3 +10,4 @@ nbproject
 .node_history
 database.php
 theme
+composer.lock

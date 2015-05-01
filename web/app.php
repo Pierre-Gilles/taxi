@@ -20,6 +20,8 @@ require __DIR__ . '/../controllers/home.php';
 require __DIR__ . '/../controllers/login.php';
 require __DIR__ . '/../controllers/contact.php';
 require __DIR__ . '/../controllers/signup.php';
+require __DIR__ . '/../controllers/orders.php';
+require __DIR__ . '/../controllers/language.php';
 require __DIR__ . '/../controllers/country_redirect.php';
 
 /**

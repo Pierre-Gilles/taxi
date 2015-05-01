@@ -9,5 +9,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app->get('/', function (Request $request) use ($app) {
 
-    return $app->redirect($app['url_generator']->generate('homepage'));
+    return $app->redirect('/'.$app['session']->get('language').'/');
+    //return $app->redirect($app['url_generator']->generate('homepage'));
 })->bind('country_redirect');

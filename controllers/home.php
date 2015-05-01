@@ -9,9 +9,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 $app->get('/{_locale}/', function () use ($app) {
-    $chauffeurs = $app['chauffeur_repository']->getAllChauffeurs();
+    //$chauffeurs = $app['chauffeur_repository']->getAllChauffeurs();
     //return $app->json($chauffeurs);
-    return $app['twig']->render('index.html', array('chauffeurs'=>$chauffeurs));
+    return $app['twig']->render('index.html', array());
 })->bind('homepage');
 
 

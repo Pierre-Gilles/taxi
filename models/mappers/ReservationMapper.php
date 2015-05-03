@@ -10,6 +10,10 @@ class ReservationMapper{
      * @return Reservation
      */
     function transform($array){
-		return new reservation($array['datetimeCreation'],$array['IDChauffeur'],$array['IDUtilisateur'], $array['IDLieu'], $array['IDLieu_a_destination_de'], $array['IDVoiture'],$array['IDVoiture'], $array['datetimeReservation'], $array['datetimeReservation'], $array['course_IDcourse'] );
+        if(!isset($array['IDReservation']))
+        {
+            $array['IDReservation'] = null;
+        }
+		return new reservation($array['datetimeCreation'],$array['IDChauffeur'],$array['IDUtilisateur'], $array['IDLieu'], $array['IDLieu_a_destination_de'], $array['IDVoiture'],$array['IDVoiture'], $array['datetimeReservation'], $array['datetimeReservation'], $array['course_IDcourse'], $array['slug'], $array['IDReservation'] );
 	}
 }

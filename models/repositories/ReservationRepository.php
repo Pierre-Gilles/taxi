@@ -10,24 +10,47 @@ class ReservationRepository
         $this->db = $db;
     }
 
-    public function createReservation($datetimeCreation, $IDChauffeur, $IDUtilisateur, $IDLieu, $IDLieu_a_destination_de, $IDVoiture, $IDReservation, $datetimeReservation, $course_IDcourse)
+    public static function randomToken($length = 10)
     {
-        return new reservation($datetimeCreation, $IDChauffeur, $IDUtilisateur, $IDLieu, $IDLieu_a_destination_de, $IDVoiture, $IDReservation, $datetimeReservation, $course_IDcourse);
+        if (function_exists('openssl_random_pseudo_bytes'))
+        {
+            $bytes = openssl_random_pseudo_bytes($length * 2);
+
+            if ($bytes === false)
+            {
+                // throw exception that unable to create random token
+            }
+
+            return strtolower(substr(str_replace(array('/', '+', '='), '', base64_encode($bytes)), 0, $length));
+        }
+
+        return ;
+    }
+
+    public function createReservation($datetimeReservation, Utilisateur $utilisateur, Lieu $Lieu, Lieu $Lieu_a_destination_de)
+    {
+        $slug = $this->randomToken();
+        return new reservation($datetimeReservation, $utilisateur->getIDUtilisateur(), $Lieu->getIDLieu(), $Lieu_a_destination_de->getIDLieu(), $slug);
     }
 
 	public function saveReservation(Reservation $reservation){
-		$sql = "INSERT INTO Reservation(codeReservation, datetimeReservation, SYSDATE(),codeChauffeur, codeUtilisateur, codeLieu, codeLieu_a_destination_de, codeVoiture, courses_codecourse) ";
-		$sql .= " VALUES(:name,:surname,:mail,:password,:phone) ";
+		$sql = "INSERT INTO Reservation( datetimeReservation, SYSDATE(),codeChauffeur, codeUtilisateur, codeLieu, codeLieu_a_destination_de, codeVoiture, courses_codecourse,slug) ";
+		$sql .= " VALUES(:datetimeReservation,:codeChauffeur,:codeUtilisateur,:codeLieu,:codeLieu_a_destination_de,:codeVoiture,:courses_codecourse,:slug) ";
 		$statement = $this->db->prepare($sql);
-		$statement->bindValue("codeReservation", $reservation->getIDreservation());
-		$statement->bindValue("datetimeReservation", $reservation->getDatetimeReservation());
+		$statement->bindValue("datetimeReservation", $reservation->getDatetimeReservation(), "datetime");
 		$statement->bindValue("codeChauffeur", $reservation->getIDChauffeur());
 		$statement->bindValue("codeUtilisateur", $reservation->getIDUtilisateur());
 		$statement->bindValue("codeLieu", $reservation->getIDLieu());
 		$statement->bindValue("codeLieu_a_destination_de", $reservation->getIDLieuADestinationDe());
 		$statement->bindValue("codeVoiture", $reservation->getIDVoiture());
 		$statement->bindValue("course_codecourse", $reservation->getCourseIDcourse());
+        $statement->bindValue("slug", $reservation->getSlug());
 		$statement->execute();
+
+
+        $reservation->setIDReservation($this->db->lastInsertId());
+        // return the ID of the inserted Lieu
+        return $reservation;
 	}
 
 

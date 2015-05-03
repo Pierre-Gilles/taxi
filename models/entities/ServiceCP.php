@@ -6,7 +6,7 @@ class ServiceCP {
 	protected $libelleServiceCP;
 	protected $prixServiceCP;
 
-	function __construct($IDServiceCP, $libelleServiceCP, $prixServiceCP) {
+	function __construct($libelleServiceCP, $prixServiceCP, $IDServiceCP = null) {
         $this->IDServiceCP = $IDServiceCP;
         $this->libelleServiceCP = $libelleServiceCP;
         $this->prixServiceCP = $prixServiceCP;

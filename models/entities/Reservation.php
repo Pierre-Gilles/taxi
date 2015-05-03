@@ -10,20 +10,39 @@ class Reservation {
     protected $IDLieu;
     protected $IDLieu_a_destination_de;
     protected $IDVoiture;
-    protected $course_IDcourse; 
+    protected $course_IDcourse;
+    protected $slug;
 
-    function __construct($datetimeCreation, $IDChauffeur, $IDUtilisateur, $IDLieu, $IDLieu_a_destination_de, $IDVoiture, $IDReservation, $datetimeReservation, $course_IDcourse)
+    function __construct( $datetimeReservation, $IDUtilisateur, $IDLieu, $IDLieu_a_destination_de, $slug, $datetimeCreation = null, $IDChauffeur = null,$IDVoiture = null, $course_IDcourse = null,$IDReservation = null)
     {
+        $this->IDReservation = $IDReservation;
+        $this->datetimeReservation = $datetimeReservation;
         $this->datetimeCreation = $datetimeCreation;
         $this->IDChauffeur = $IDChauffeur;
         $this->IDUtilisateur = $IDUtilisateur;
         $this->IDLieu = $IDLieu;
         $this->IDLieu_a_destination_de = $IDLieu_a_destination_de;
         $this->IDVoiture = $IDVoiture;
-        $this->IDReservation = $IDReservation;
-        $this->datetimeReservation = $datetimeReservation;
         $this->course_IDcourse = $course_IDcourse;
+        $this->slug = $slug;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
 
     /**
      * @return mixed

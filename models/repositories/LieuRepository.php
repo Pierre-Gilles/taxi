@@ -16,8 +16,10 @@ class LieuRepository{
 		$statement->bindValue("ville", $lieu->getVilleLieu());
 		$statement->bindValue("CP", $lieu->getCodePostalLieu());
 		$statement->execute();
-		// return the ID of the inserted Lieu
-		return $this->db->lastInsertId();
+
+		$lieu->setIDLieu($this->db->lastInsertId());
+		// return the lieu with the ID
+		return $lieu;
 	}
 
 	public function getLieuClient(Utilisateur $user){

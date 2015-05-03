@@ -126,6 +126,12 @@ $app->register(new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/var/cache/profiler',
 ));
 
+/**
+ * Adding swiftMailerServiceProvider to send mail
+ */
+
+$app->register(new Silex\Provider\SwiftmailerServiceProvider());
+
 
 /**
  * Registering Translation service provider
@@ -202,5 +208,9 @@ $app['voiture_repository'] = $app->share(function() use ($app) {
  */
 
 $app['securityhandler_service'] = $app->share(function() use ($app) {
-    return new SecurityHandler($app['utilisateur_repository']);
+    return new SecurityHandler();
+});
+
+$app['mailservice_service'] = $app->share(function() use ($app) {
+    return new MailService();
 });

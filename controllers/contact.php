@@ -12,8 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 $app->match('/{_locale}/contact', function (Request $request) use ($app) {
 
     $data = array(
-        'email' => '',
         'name' => '',
+        'email' => '',
         'Your message' => '',
     );
 
@@ -26,11 +26,11 @@ $app->match('/{_locale}/contact', function (Request $request) use ($app) {
             'attr' => array('placeholder' => 'Name'),
             'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('email', 'text', array(
+        ->add('email', 'email', array(
             'attr' => array('placeholder' => 'Email'),
             'constraints' => new Assert\Email()
         ))
-        ->add('Message', 'textarea', array(
+        ->add('message', 'textarea', array(
             'attr' => array('placeholder' => 'Your Message','cols' => '5', 'rows' => '5'),
         ))
         ->getForm();

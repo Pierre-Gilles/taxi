@@ -19,10 +19,9 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
     $data = array(
         'address' => '',
         'city' => '',
-        'postcode' => '',
         'adress_destination' => '',
         'city_destination' => '',
-        'postcode_destination' => ''
+        'datetime' => new \DateTime()
     );
 
     $order_ok = false;
@@ -39,9 +38,9 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
             'attr' => array('placeholder' => 'City'),
             'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('postcode', 'text', array(
+        ->add('postcode', 'number', array(
             'attr' => array('placeholder' => 'Postcode'),
-            'constraints' => array(new Assert\NotBlank())
+            'constraints' => array(new Assert\NotBlank(), new Assert\Range(array( 'min' => 0, 'max' => 99999 )) )
         ))
         ->add('address_destination', 'text', array(
             'attr' => array('placeholder' => 'Address'),
@@ -51,13 +50,13 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
             'attr' => array('placeholder' => 'City'),
             'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('postcode_destination', 'text', array(
+        ->add('postcode_destination', 'number', array(
             'attr' => array('placeholder' => 'Postcode'),
-            'constraints' => array(new Assert\NotBlank())
+            'constraints' => array(new Assert\NotBlank() , new Assert\Range(array( 'min' => 0, 'max' => 99999 )) )
         ))
         ->add('datetime', 'datetime', array(
             'attr' => array('placeholder' => 'When'),
-            'constraints' => array(new Assert\NotBlank())
+            'constraints' => array(new Assert\NotBlank(), new Assert\Range(array( 'min' => new \DateTime())))
         ))
         ->getForm();
 

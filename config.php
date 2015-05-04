@@ -161,12 +161,16 @@ $app['utilisateur_mapper'] = $app->share(function() use ($app) {
     return new UtilisateurMapper();
 });
 
+$app['chauffeur_mapper'] = $app->share(function() use ($app) {
+    return new ChauffeurMapper();
+});
+
 /**
  * Sharing all the repository, so they are accessible anywhere
  */
 
 $app['chauffeur_repository'] = $app->share(function() use ($app) {
-    return new ChauffeurRepository($app['db']);
+    return new ChauffeurRepository($app['chauffeur_mapper'], $app['db']);
 });
 
 $app['course_repository'] = $app->share(function() use ($app) {

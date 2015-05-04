@@ -7,8 +7,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h1>Registration</h1>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                <h1>{{ 'My clients'|trans}}</h1>
+                <p>{{'Visualize your clients '|trans}}</p>
             </div>
             <div class="col-sm-6">
                 <ul class="breadcrumb pull-right">
@@ -22,16 +22,13 @@
 </section><!--/#title-->
 
 <section id="registration" class="container">
-    <h3>{{ app.session.get('user').nomUtilisateur }} {{ app.session.get('user').prenomUtilisateur }}</h3>
-
-    <a href="{{ app.url_generator.generate('order') }}"><button class="btn btn-primary pull-right">{{ 'make_a_reservation' |trans}}</button></a>
-
-
+    <h3>{{ app.session.get('chauffeur').nomChauffeur }} {{ app.session.get('chauffeur').prenomChauffeur }}</h3>
 
     <table class="table table-striped">
         <thead>
         <tr>
             <th>{{ 'reference'|trans }}</th>
+            <th>{{ 'client'|trans }}</th>
             <th>{{ 'location_time'|trans }}</th>
             <th>{{ 'departure'|trans }}</th>
             <th>{{ 'arrival'|trans }}</th>
@@ -40,12 +37,13 @@
         <tbody>
 
         {% for order in orders %}
-            <tr>
-                <th>{{order.slug|upper}}</th>
-                <td scope="row">{{ order.datetimeReservation|localizeddate('full', 'medium', app.request.locale)|capitalize  }}</td>
-                <td>{{order.Adresse}} {{order.Ville}} {{order.codePostal}}</td>
-                <td>{{order.AdresseDest}} {{order.VilleDest}} {{order.codePostalDest}}</td>
-            </tr>
+        <tr>
+            <th>{{order.slug|upper}}</th>
+            <td>{{order.nomUtilisateur }} {{ order.prénomUtilisateur }}</td>
+            <td>{{ order.datetimeReservation|localizeddate('full', 'medium', app.request.locale)|capitalize  }}</td>
+            <td>{{order.Adresse}} {{order.Ville}} {{order.codePostal}}</td>
+            <td>{{order.AdresseDest}} {{order.VilleDest}} {{order.codePostalDest}}</td>
+        </tr>
         {% endfor %}
 
         </tbody>

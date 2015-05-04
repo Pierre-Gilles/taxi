@@ -3,10 +3,23 @@
 class ChauffeurRepository{
 
 	protected $db;
+	protected $chauffeurMapper;
 
-	final public function __construct( $db) {
+	final public function __construct(ChauffeurMapper $chauffeurMapper,  $db) {
        	$this->db = $db;
+		$this->chauffeurMapper = $chauffeurMapper;
     }
+
+	public function login($mail,$password){
+		$sql = "SELECT * FROM Chauffeur WHERE mailChauffeur = ?";
+		$chauffeur = $this->db->fetchAssoc($sql, array($mail));
+		if(password_verify($password, $chauffeur['motdepasseChauffeur'])){
+			$chauffeur = $this->chauffeurMapper->transform($chauffeur);
+			return $chauffeur;
+		}else{
+			return null;
+		}
+	}
 
 	public function getAllChauffeurs(){
 		$statement = $this->db->prepare("SELECT * FROM chauffeur");

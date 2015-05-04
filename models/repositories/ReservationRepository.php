@@ -71,6 +71,27 @@ class ReservationRepository
 		return $reservation;
 	}
 
+    public function getAllReservationChauffeur(Chauffeur $chauffeur){
+        $statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, datetimeCréation,
+                                            nomUtilisateur, prénomUtilisateur, slug,
+                                            La.AdresseLieu AS Adresse, La.VilleLieu AS Ville, La.codePostalLieu AS codePostal,
+                                            Lb.AdresseLieu AS AdresseDest, Lb.VilleLieu AS VilleDest, Lb.codePostalLieu AS codePostalDest
+											FROM Réservation R NATURAL JOIN Utilisateur
+											LEFT JOIN Lieu La ON La.codeLieu = R.codeLieu
+											LEFT JOIN Lieu Lb ON Lb.codeLieu = R.codeLieu_a_destination_de
+											WHERE codeChauffeur = ?
+											GROUP BY codeReservation;
+										");
+        $statement->bindValue(1, $chauffeur->getIDChauffeur(), "integer");
+        $statement->execute();
+        $reservations = $statement->fetchAll();
+        /*$chauffeurMapper = new ReservationMapper();
+        for($i = 0; $i < count($disponibilite); $i++){
+            $disponibilite[$i] = $chauffeurMapper->transform($disponibilite[$i]);
+        }*/
+        return $reservations;
+    }
+
     public function getAllReservation(Utilisateur $user){
         $statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, datetimeCréation,
                                             nomUtilisateur, prénomUtilisateur, slug,

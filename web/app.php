@@ -15,6 +15,7 @@ require __DIR__ . '/../config.php';
 /**
  * Requiring all the controllers
  */
+require __DIR__ . '/../controllers/admin.php';
 require __DIR__ . '/../controllers/security.php';
 require __DIR__ . '/../controllers/home.php';
 require __DIR__ . '/../controllers/login.php';
@@ -22,6 +23,7 @@ require __DIR__ . '/../controllers/logout.php';
 require __DIR__ . '/../controllers/contact.php';
 require __DIR__ . '/../controllers/signup.php';
 require __DIR__ . '/../controllers/order.php';
+require __DIR__ . '/../controllers/error.php';
 require __DIR__ . '/../controllers/orders.php';
 require __DIR__ . '/../controllers/language.php';
 require __DIR__ . '/../controllers/country_redirect.php';

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<section id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>{{ 'Admin login'|trans}}</h1>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li class="active">Registration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section><!--/#title-->
+
+<section id="registration" class="container">
+    <form class="center" role="form" method="POST" action="" >
+
+
+        <fieldset class="registration-form">
+            {{ form_widget(form) }}
+            <input type="submit" class="form-control" value="{{ 'login'|trans }}" />
+        </fieldset>
+    </form>
+</section><!--/#registration-->
+
+{% endblock %}

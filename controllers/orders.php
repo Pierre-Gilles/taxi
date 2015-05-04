@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 $app->match('/{_locale}/orders', function (Request $request) use ($app) {
    // $orders = $app['reservation_repository']->getAllReservation($app['session']->get('user'));
-    $orders = $app['reservation_repository']->getAllReservation(new Utilisateur( "Jean", "Jacq", "dsf", "sfs", "fdf", 11));
+    $orders = $app['reservation_repository']->getAllReservation($app['session']->get('user'));
     //$lieux = $app['lieu_repository']->getLieuClient(11);
 
     return $app['twig']->render('orders.html', array('orders' => $orders));

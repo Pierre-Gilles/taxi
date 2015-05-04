@@ -12,7 +12,7 @@ $app->before(function (Request $request, Application $app) {
     //echo json_encode($app['session']->get('user'));
     //$app['session']->set('user', array('username' => "COUCOU"));
     $openPages = array("login", "homepage", "signup","contact", "adminlogin");
-    $requireAdmin = array("admin", "adminassign");
+    $requireAdmin = array("admin", "adminassign", "adminsignup");
 
     // if the
     if(!in_array($request->get("_route"),$openPages)) {

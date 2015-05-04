@@ -25,6 +25,7 @@
     <ul class="portfolio-filter">
         <li><a class="btn btn-default {% if app.request.attributes.get('_route') == 'admin' %}active{% endif %}" href="{{ app.url_generator.generate('admin') }}" >{{'admin'|trans}}</a></li>
         <li><a class="btn btn-default {% if app.request.attributes.get('_route') == 'adminassign' %}active{% endif %}" href="{{ app.url_generator.generate('adminassign') }}" >{{'Assign'|trans}}</a></li>
+        <li><a class="btn btn-default {% if app.request.attributes.get('_route') == 'adminsignup' %}active{% endif %}" href="{{ app.url_generator.generate('adminsignup') }}" >{{'Create admin accout'|trans}}</a></li>
     </ul>
 
     <table class="table table-striped">

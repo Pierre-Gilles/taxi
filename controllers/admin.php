@@ -95,3 +95,59 @@ $app->match('/{_locale}/admin/login', function (Request $request) use ($app) {
 
     return $app['twig']->render('admin.login.html', array('form' => $form->createView()));
 })->bind('adminlogin');
+
+
+$app->match('/{_locale}/admin/signup', function (Request $request) use ($app) {
+
+    $data = array(
+        'name' => '',
+        'surname' => '',
+        'email' => '',
+        'phone' => ''
+    );
+
+    /**
+     * Creating form
+     */
+    $form = $app['form.factory']->createBuilder('form', $data)
+        ->add('name', 'text', array(
+            'attr' => array('placeholder' => 'Name'),
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('surname', 'text', array(
+            'attr' => array('placeholder' => 'Surname'),
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('email', 'text', array(
+            'attr' => array('placeholder' => 'Email'),
+            'constraints' => new Assert\Email()
+        ))
+        ->add('phone', 'text', array(
+            'attr' => array('placeholder' => 'Phone'),
+            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
+        ))
+        ->add('password', 'repeated', array(
+            'type' => 'password',
+            'first_options'  => array('label' => 'Mot de passe'),
+            'second_options' => array( 'label' => 'Mot de passe (validation)'),
+            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
+        ))
+        ->getForm();
+
+    $form->handleRequest($request);
+
+    $signup_ok = false;
+
+    if ($form->isValid()) {
+        $formData = $form->getData();
+
+        $chauffeur = $app['chauffeur_repository']->createChauffeur($formData['name'],$formData['surname'],$formData['email'], $formData['password'], $formData['phone']);
+        $app['chauffeur_repository']->saveChauffeur($chauffeur);
+        $signup_ok = true;
+
+    }
+
+    return $app['twig']->render('admin.signup.html', array('signup_ok' => $signup_ok,'form' => $form->createView()));
+})->bind('adminsignup');
+
+

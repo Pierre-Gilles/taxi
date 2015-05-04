@@ -24,9 +24,14 @@
     <form class="center" role="form" method="POST" action="" >
 
 
+
         <fieldset class="registration-form">
             {{ form_widget(form) }}
             <input type="submit" class="form-control" value="{{ 'connexion'|trans }}" />
+            <br />
+            <p>
+                <a href="{{ app.url_generator.generate('signup') }}" >{{'Create_account'|trans}}</a>
+            </p>
         </fieldset>
     </form>
 </section><!--/#registration-->

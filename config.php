@@ -121,10 +121,11 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
  * WebProfilerServiceProvider :
  * Provide the debug bar at the bottom of the window.
  */
-
-$app->register(new WebProfilerServiceProvider(), array(
-    'profiler.cache_dir' => __DIR__.'/var/cache/profiler',
-));
+if($app['debug']) {
+    $app->register(new WebProfilerServiceProvider(), array(
+        'profiler.cache_dir' => __DIR__ . '/var/cache/profiler',
+    ));
+}
 
 /**
  * Adding swiftMailerServiceProvider to send mail

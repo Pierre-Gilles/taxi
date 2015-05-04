@@ -27,8 +27,6 @@
         <li><a class="btn btn-default {% if app.request.attributes.get('_route') == 'adminassign' %}active{% endif %}" href="{{ app.url_generator.generate('adminassign') }}" >{{'Assign'|trans}}</a></li>
     </ul>
 
-    <h3>{{ app.session.get('chauffeur').nomChauffeur }} {{ app.session.get('chauffeur').prenomChauffeur }}</h3>
-
     <table class="table table-striped">
         <thead>
         <tr>
@@ -37,17 +35,23 @@
             <th>{{ 'location_time'|trans }}</th>
             <th>{{ 'departure'|trans }}</th>
             <th>{{ 'arrival'|trans }}</th>
+            <th>{{ 'Assign'|trans }}</th>
+            <th>{{ 'Valid'|trans }}</th>
         </tr>
         </thead>
         <tbody>
 
         {% for order in orders %}
         <tr>
+            <form method="post" action="#">
             <th>{{order.slug|upper}}</th>
             <td>{{order.nomUtilisateur }} {{ order.prénomUtilisateur }}</td>
             <td>{{ order.datetimeReservation|localizeddate('full', 'medium', app.request.locale)|capitalize  }}</td>
             <td>{{order.Adresse}} {{order.Ville}} {{order.codePostal}}</td>
             <td>{{order.AdresseDest}} {{order.VilleDest}} {{order.codePostalDest}}</td>
+                <td>{{form_widget(formView[loop.index0].chauffeur) }}{{form_rest(formView[loop.index0])}}</td>
+            <td><input type="submit" class="btn btn-success" value="{{'assign'|trans}}"> </td>
+            </form>
         </tr>
         {% endfor %}
 

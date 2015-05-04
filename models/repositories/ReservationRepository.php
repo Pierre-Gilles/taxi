@@ -52,6 +52,13 @@ class ReservationRepository
         return $reservation;
     }
 
+    public function assignReservation($idReservation, $idChauffeur){
+        $statement = $this->db->prepare("UPDATE Réservation SET codeChauffeur = ? WHERE codeReservation = ?");
+        $statement->bindValue(1, $idChauffeur);
+        $statement->bindValue(2, $idReservation);
+        $statement->execute();
+    }
+
 
     /**
      * @return mixed
@@ -71,6 +78,27 @@ class ReservationRepository
 		return $reservation;
 	}
 
+    public function getAllReservationsAvailable(){
+        $statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, datetimeCréation,
+                                            nomUtilisateur, prénomUtilisateur, slug,
+                                            La.AdresseLieu AS Adresse, La.VilleLieu AS Ville, La.codePostalLieu AS codePostal,
+                                            Lb.AdresseLieu AS AdresseDest, Lb.VilleLieu AS VilleDest, Lb.codePostalLieu AS codePostalDest
+											FROM Réservation R NATURAL JOIN Utilisateur
+											LEFT JOIN Lieu La ON La.codeLieu = R.codeLieu
+											LEFT JOIN Lieu Lb ON Lb.codeLieu = R.codeLieu_a_destination_de
+											WHERE codeChauffeur is NULL
+											GROUP BY codeReservation
+											ORDER BY datetimeReservation;
+										");
+        $statement->execute();
+        $reservations = $statement->fetchAll();
+        /*$chauffeurMapper = new ReservationMapper();
+        for($i = 0; $i < count($disponibilite); $i++){
+            $disponibilite[$i] = $chauffeurMapper->transform($disponibilite[$i]);
+        }*/
+        return $reservations;
+    }
+
     public function getAllReservationChauffeur(Chauffeur $chauffeur){
         $statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, datetimeCréation,
                                             nomUtilisateur, prénomUtilisateur, slug,
@@ -80,7 +108,8 @@ class ReservationRepository
 											LEFT JOIN Lieu La ON La.codeLieu = R.codeLieu
 											LEFT JOIN Lieu Lb ON Lb.codeLieu = R.codeLieu_a_destination_de
 											WHERE codeChauffeur = ?
-											GROUP BY codeReservation;
+											GROUP BY codeReservation
+											ORDER BY datetimeReservation;
 										");
         $statement->bindValue(1, $chauffeur->getIDChauffeur(), "integer");
         $statement->execute();
@@ -92,7 +121,7 @@ class ReservationRepository
         return $reservations;
     }
 
-    public function getAllReservation(Utilisateur $user){
+    public function getAllReservationUtilisateur(Utilisateur $user){
         $statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, datetimeCréation,
                                             nomUtilisateur, prénomUtilisateur, slug,
                                             La.AdresseLieu AS Adresse, La.VilleLieu AS Ville, La.codePostalLieu AS codePostal,
@@ -101,7 +130,8 @@ class ReservationRepository
 											LEFT JOIN Lieu La ON La.codeLieu = R.codeLieu
 											LEFT JOIN Lieu Lb ON Lb.codeLieu = R.codeLieu_a_destination_de
 											WHERE codeUtilisateur = ?
-											GROUP BY codeReservation;
+											GROUP BY codeReservation
+											ORDER BY datetimeReservation ASC;
 										");
         $statement->bindValue(1, $user->getIDUtilisateur(), "integer");
         $statement->execute();

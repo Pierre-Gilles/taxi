@@ -27,14 +27,26 @@ Mot de passe: Password
 Mot de passe (validation): Password (validation)
 ordernow: Order
 admintext1: Are you the administrator of this website?
-admintext2: Only the administrator can cross this portal.
-Admin login: Admina access
+admintext2: Only the administrator can access this portal.
+Admin login: Admin access
 My clients: My customers
 Visualize your clients: Visualize your customers
 departure: Departure
-arrival: Destination
+arrival: Place of takeover
 client: Customer
-location_time:
+location_time: Time of pick up
 reference: Reference
 No orders: No orders
 arrival: Destination
+Valid: Validate
+Assign: Assigned to driver
+signup_admin_ok: Log Out done
+orders: My orders
+make_a_reservation: Book a taxi
+adminlogin: Admin access log In
+adminsignup: Admin access log Out
+Visualize your rides: Visualize your rides
+My Dashboard: My dashboard
+change_language: Français
+Maker_a_new_order: Rebook
+

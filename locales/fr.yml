@@ -27,12 +27,24 @@ Mot de passe: Mot de passe
 Mot de passe (validation): Mot de passe (validation)
 ordernow: Réserver
 admintext1: Etes vous l'administrateur de ce site ?
-admintext2: Seul l'administrateur peut passer ce portail.
+admintext2: Seul l'administrateur peut accéder à ce portail.
 Admin login: Accès admin
-My clients: Mes clients
+My clients: Ma clientèle
 Visualize your clients: Visualiser mes clients
-departure: Départ
+departure: Lieu de prise en charge
 client: Client
-location_time:
+location_time: Heure de prise en charge
 reference: Référence
 No orders: Aucune commande
+Valid: Valider
+Assign: Assigné au chauffeur
+signup_admin_ok: Déconnexion effectuée.
+orders: Mes commandes
+make_a_reservation: Réserver
+adminlogin: Connexion accès admin
+adminsignup: Déonnexion accès admin
+Visualize your rides: Visualiser mes courses
+My Dashboard: Mon tableau de bord
+change_language: English
+Maker_a_new_order: Effectuer une nouvelle réservation
+

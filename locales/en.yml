@@ -15,7 +15,8 @@ contact: Contact
 contactmessage1: A question? An opinion? We are delighted to discuss with you.
 contactmessage2: Leave us a line using the form below.
 Your Message: Your message
-login: Login
-logintext1: Signin to access your information.
+login: Log In
+logintext1: Sign In to access your information.
 registration: Registration
 create_account:
+connexion: Log In

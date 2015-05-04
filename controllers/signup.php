@@ -39,8 +39,9 @@ $app->match('/{_locale}/signup', function (Request $request) use ($app) {
         ))
         ->add('password', 'repeated', array(
             'type' => 'password',
-            'first_options'  => array('label' => 'Mot de passe'),
-            'second_options' => array( 'label' => 'Mot de passe (validation)'),
+            'first_options'  => array('label' => 'Mot de passe', 'attr' => array('placeholder' => 'Password')),
+            'second_options' => array( 'label' => 'Mot de passe (validation)', 'attr' => array('placeholder' => 'Password')),
+
             'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
         ))
         ->getForm();

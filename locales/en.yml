@@ -17,7 +17,24 @@ contactmessage2: Leave us a line using the form below.
 Your Message: Your message
 login: Log In
 logintext1: Sign In to access your information.
-registration: Registration
-create_account:
+registration: Sign Up
+registrationtext1: For all your professional or private journeys, online booking is a simple and quick solution.
+registrationtext2: Register to reserve your taxi in advance.
 connexion: Log In
 Password: Password
+create_account: Sign Up
+Mot de passe: Password
+Mot de passe (validation): Password (validation)
+ordernow: Order
+admintext1: Are you the administrator of this website?
+admintext2: Only the administrator can cross this portal.
+Admin login: Admina access
+My clients: My customers
+Visualize your clients: Visualize your customers
+departure: Departure
+arrival: Destination
+client: Customer
+location_time:
+reference: Reference
+No orders: No orders
+arrival: Destination

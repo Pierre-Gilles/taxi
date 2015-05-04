@@ -18,5 +18,21 @@ Your Message: Votre message
 login: Se connecter
 logintext1: Pour accéder à vos informations, connectez-vous.
 registration: S'inscrire
+registrationtext1: Pour tous vos déplacement professionnels ou privés, la réservation en ligne est une solution simple et rapide.
+registrationtext2: Inscrivez vous afin de réserver votre taxi à l'avance.
 connexion: Connexion
 Password: Mot de passe
+create_account: Inscription
+Mot de passe: Mot de passe
+Mot de passe (validation): Mot de passe (validation)
+ordernow: Réserver
+admintext1: Etes vous l'administrateur de ce site ?
+admintext2: Seul l'administrateur peut passer ce portail.
+Admin login: Accès admin
+My clients: Mes clients
+Visualize your clients: Visualiser mes clients
+departure: Départ
+client: Client
+location_time:
+reference: Référence
+No orders: Aucune commande

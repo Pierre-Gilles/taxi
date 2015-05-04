@@ -5,14 +5,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1>Contact</h1>
-                    <p></p>
+                    <h1>{{ 'contact'|trans }}</h1>
+                    <p>{{ 'contactmessage1'|trans }}</br>{{ 'contactmessage2'|trans }}</p>
                 </div>
                 <div class="col-sm-6">
                     <ul class="breadcrumb pull-right">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="#">Pages</a></li>
-                        <li class="active">Contact</li>
+                        <li class="active">{{ 'contact'|trans }}</li>
                     </ul>
                 </div>
             </div>
@@ -20,36 +19,54 @@
     </section><!--/#title-->
 
 
-    <section id="contact" class="container">
+<section id="contact-us">
+
+    <div class="container">
         {% if messagesent == true %}
-        <p class="alert alert-success">{{ 'messagesentok'|trans }}</p></br>
+            <p class="alert alert-success">{{ 'messagesentok1'|trans }}</br>{{ 'messagesentok2'|trans }}</p>
         {% endif %}
-        <!--Votre message a bien été envoyé.Nous vous remercions de l'intérêt que vous nous portez et nous efforçons de vous répondre dans les meilleurs délais. -->
+        <div class="row">
+            <div id="content" class="site-content col-md-8" role="main">
+                <!--<header class="entry-header">
+                    <h4 class="entry-title">{{ 'contactform'|trans }}</h4>
+                </header> -->
 
-        <form class="center" role="form" method="POST" action="" >
+                <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#" >
 
+                    <div class="row">
+                        <div class="col-lg-6 form-group">
+                            <!--<div class="form-group">
+                                <input type="text" class="form-control" name="name" required="required" placeholder="Name">
+                            </div> -->
+                            {{form_row(form.name)}}
+                            <!--<div class="form-group">
+                                <input type="email" class="form-control" name="email" required="required" placeholder="Email">
+                            </div> -->
+                            {{form_row(form.email)}}
+                            <!-- <div class="form-group">
+                                <input type="url" class="form-control" name="url" placeholder="Website">
+                            </div> -->
+                        </div>
+                        <div class="col-lg-6">
+                            <!--<div class="form-group">
+                                <textarea rows="10" class="form-control" placeholder="Message" required="required"></textarea>
+                            </div>-->
+                            {{form_row(form.message)}}
+                            {{form_rest(form)}}
+                            </br>
+                            <input type="submit" class="btn btn-md btn-primary pull-right" value="{{ 'Send'|trans }}" >
 
-            <fieldset class="contact-form">
-                {{ form_widget(form) }}
-                <!--<div class="form-group">
-                    <input type="text" id="username" name="username" placeholder="Username" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="email" name="email" placeholder="E-mail" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password_confirm" name="password_confirm" placeholder="Password (Confirm)" class="form-control">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-success btn-md btn-block">Register</button>
-                </div>-->
-                <input type="submit" class="form-control" value="{{ 'Send'|trans }}" />
-            </fieldset>
-        </form>
-    </section><!--/#contact-->
+                        </div>
+                    </div>
 
+                </form>
+            </div><!--/#content-->
+            <div class="col-md-4">
+                <h4>{{ 'location'|trans }}</h4>
+                <iframe width="100%" height="200px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=10+Chemin+de+la+Bataille,+Givry,+France&amp;output=embed"></iframe>
+            </div>
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section>
 
 {% endblock %}

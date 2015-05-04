@@ -16,7 +16,7 @@ jQuery(function($) {
 			$(this).css('margin-top',  ($('#main-slider').height() - $(this).height())/2);
 		});
 	});
-
+/*
 	//portfolio
 	$(window).load(function(){
 		$portfolio_selectors = $('.portfolio-filter >li>a');
@@ -35,16 +35,16 @@ jQuery(function($) {
 			});
 		}
 	});
-
+*/
 	//contact form
-	var form = $('.contact-form');
+	/*var form = $('.contact-form');
 	form.submit(function () {
 		$this = $(this);
 		$.post($(this).attr('action'), function(data) {
 			$this.prev().text(data.message).fadeIn().delay(3000).fadeOut();
 		},'json');
 		return false;
-	});
+	});*/
 
 	//goto top
 	$('.gototop').click(function(event) {

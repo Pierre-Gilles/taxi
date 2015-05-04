@@ -19,7 +19,13 @@
         </div>
     </section><!--/#title-->
 
+
     <section id="contact" class="container">
+        {% if messagesent == true %}
+        <p class="alert alert-success">{{ 'messagesentok'|trans }}</p></br>
+        {% endif %}
+        <!--Votre message a bien été envoyé.Nous vous remercions de l'intérêt que vous nous portez et nous efforçons de vous répondre dans les meilleurs délais. -->
+
         <form class="center" role="form" method="POST" action="" >
 
 
@@ -44,4 +50,6 @@
             </fieldset>
         </form>
     </section><!--/#contact-->
+
+
 {% endblock %}

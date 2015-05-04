@@ -24,7 +24,7 @@ $app->match('/{_locale}/contact', function (Request $request) use ($app) {
     $form = $app['form.factory']->createBuilder('form', $data)
         ->add('name', 'text', array(
             'attr' => array('placeholder' => 'Name'),
-            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))
+            'constraints' => array(new Assert\NotBlank())
         ))
         ->add('email', 'text', array(
             'attr' => array('placeholder' => 'Email'),
@@ -36,17 +36,16 @@ $app->match('/{_locale}/contact', function (Request $request) use ($app) {
         ->getForm();
 
     $form->handleRequest($request);
+    $messagesent = false;
 
     if ($form->isValid()) {
         $form->getData();
-
-        // do something with the data
-
+        $messagesent = true;
         // redirect somewhere
-        return $app->redirect('messagesent.html');
+       // return $app->redirect('contact.html');
     }
 
-    return $app['twig']->render('contact.html', array('form' => $form->createView()));
+    return $app['twig']->render('contact.html', array('messagesent' => $messagesent,'form' => $form->createView()));
 
     /* $username = "test";
     if(!empty($request->get('username')))

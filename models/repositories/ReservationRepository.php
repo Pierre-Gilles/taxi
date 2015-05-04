@@ -97,7 +97,7 @@ class ReservationRepository
                                             nomUtilisateur, prénomUtilisateur, slug,
                                             La.AdresseLieu AS Adresse, La.VilleLieu AS Ville, La.codePostalLieu AS codePostal,
                                             Lb.AdresseLieu AS AdresseDest, Lb.VilleLieu AS VilleDest, Lb.codePostalLieu AS codePostalDest
-											FROM Réservation R NATURAL JOIN Chauffeur  NATURAL JOIN Voiture NATURAL JOIN Utilisateur
+											FROM Réservation R NATURAL JOIN Utilisateur
 											LEFT JOIN Lieu La ON La.codeLieu = R.codeLieu
 											LEFT JOIN Lieu Lb ON Lb.codeLieu = R.codeLieu_a_destination_de
 											WHERE codeUtilisateur = ?

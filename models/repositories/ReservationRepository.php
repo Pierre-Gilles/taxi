@@ -33,25 +33,24 @@ class ReservationRepository
         return new reservation($datetimeReservation, $utilisateur->getIDUtilisateur(), $Lieu->getIDLieu(), $Lieu_a_destination_de->getIDLieu(), $slug);
     }
 
-	public function saveReservation(Reservation $reservation){
-		$sql = "INSERT INTO Reservation( datetimeReservation, SYSDATE(),codeChauffeur, codeUtilisateur, codeLieu, codeLieu_a_destination_de, codeVoiture, courses_codecourse,slug) ";
-		$sql .= " VALUES(:datetimeReservation,:codeChauffeur,:codeUtilisateur,:codeLieu,:codeLieu_a_destination_de,:codeVoiture,:courses_codecourse,:slug) ";
-		$statement = $this->db->prepare($sql);
-		$statement->bindValue("datetimeReservation", $reservation->getDatetimeReservation(), "datetime");
-		$statement->bindValue("codeChauffeur", $reservation->getIDChauffeur());
-		$statement->bindValue("codeUtilisateur", $reservation->getIDUtilisateur());
-		$statement->bindValue("codeLieu", $reservation->getIDLieu());
-		$statement->bindValue("codeLieu_a_destination_de", $reservation->getIDLieuADestinationDe());
-		$statement->bindValue("codeVoiture", $reservation->getIDVoiture());
-		$statement->bindValue("course_codecourse", $reservation->getCourseIDcourse());
+    public function saveReservation(Reservation $reservation){
+        $sql = "INSERT INTO Réservation(datetimeReservation, datetimeCréation, codeChauffeur, codeUtilisateur, codeLieu, codeLieu_a_destination_de, codeVoiture, Course_codecourse, slug) ";
+        $sql .= " VALUES (:datetimeReservation, SYSDATE(), :codeChauffeur , :codeUtilisateur, :codeLieu, :codeLieuDest, :codeVoiture, :codecourse, :slug);";
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue("datetimeReservation", $reservation->getDatetimeReservation(), "datetime");
+        $statement->bindValue("codeChauffeur", $reservation->getIDChauffeur());
+        $statement->bindValue("codeUtilisateur", $reservation->getIDUtilisateur());
+        $statement->bindValue("codeLieu", $reservation->getIDLieu());
+        $statement->bindValue("codeLieuDest", $reservation->getIDLieuADestinationDe());
+        $statement->bindValue("codeVoiture", $reservation->getIDVoiture());
+        $statement->bindValue("codecourse", $reservation->getCourseIDcourse());
         $statement->bindValue("slug", $reservation->getSlug());
-		$statement->execute();
-
+        $statement->execute();
 
         $reservation->setIDReservation($this->db->lastInsertId());
         // return the ID of the inserted Lieu
         return $reservation;
-	}
+    }
 
 
     /**
@@ -73,8 +72,13 @@ class ReservationRepository
 	}
 
     public function getAllReservation(Utilisateur $user){
-        $statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, datetimeCréation, codeChauffeur, codeUtilisateur, codeLieu, codeLieu_a_destination_de, codeVoiture
-											FROM Réservation NATURAL JOIN Chauffeur  NATURAL JOIN Voiture NATURAL JOIN Utilisateur NATURAL JOIN Lieu
+        $statement = $this->db->prepare("SELECT codeReservation, datetimeReservation, datetimeCréation,
+                                            nomUtilisateur, prénomUtilisateur, slug,
+                                            La.AdresseLieu AS Adresse, La.VilleLieu AS Ville, La.codePostalLieu AS codePostal,
+                                            Lb.AdresseLieu AS AdresseDest, Lb.VilleLieu AS VilleDest, Lb.codePostalLieu AS codePostalDest
+											FROM Réservation R NATURAL JOIN Chauffeur  NATURAL JOIN Voiture NATURAL JOIN Utilisateur
+											LEFT JOIN Lieu La ON La.codeLieu = R.codeLieu
+											LEFT JOIN Lieu Lb ON Lb.codeLieu = R.codeLieu_a_destination_de
 											WHERE codeUtilisateur = ?
 											GROUP BY codeReservation;
 										");

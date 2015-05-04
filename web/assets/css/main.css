@@ -1087,3 +1087,7 @@ ul.faq li > div h3 {
   margin-top: 150px;
   margin-bottom: 150px;
 }
+
+select {
+  max-width:100px;
+}

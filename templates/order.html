@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<section id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>{{'order'|trans}}</h1>
+                <p>{{ 'Maker_a_new_order'|trans}}</p>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{{ app.url_generator.generate('homepage') }}">{{'Home'|trans}}</a></li>
+                    <li><a href="{{ app.url_generator.generate('orders') }}">{{'Orders'|trans}}</a></li>
+                    <li class="active">{{ 'new order'|trans}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section><!--/#title-->
+
+{% if order_ok == false %}
+
+<section id="registration" class="container">
+
+    <h2>{{ 'make_reservation'|trans}} <button class="btn btn-default pull-right">{{ 'back_to_my_orders'|trans }}</button></h2>
+
+    <hr>
+
+    <form class="form" role="form" method="POST" action="" >
+
+        <h4>{{ 'Where do you want to be picked up'|trans}} ?</h4>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">{{ form_row(form.address) }}</div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">{{ form_row(form.city) }}</div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">{{ form_row(form.postcode) }}</div>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h4>{{ 'Where do you want to go'|trans}} ?</h4>
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">{{ form_row(form.address_destination) }}</div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">{{ form_row(form.city_destination) }}</div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">{{ form_row(form.postcode_destination) }}</div>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h4>{{ 'When '|trans}} ?</h4>
+        <div class="row">
+            <div class="col-md-8">
+                {{ form_row(form.datetime) }}
+            </div>
+        </div>
+
+
+        <hr>
+
+        {{ form_rest(form) }}
+
+        <div class="row">
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-success" value="{{ 'order_taxi'|trans }}" />
+            </div>
+        </div>
+
+    </form>
+
+
+</section><!--/#registration-->
+
+
+{% else %}
+
+<section id="registration" class="container">
+    <p class="alert alert-success">{{ 'reservation_ok'|trans }}</p>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'location_time'|trans }}</th>
+            <th>{{ 'departure'|trans }}</th>
+            <th>{{ 'arrival'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ formData.datetime|localizeddate('full', 'medium', app.request.locale) }}</td>
+            <td>{{ formData.address }} {{ formData.city }} {{ formData.postcode }}</td>
+            <td>{{ formData.address_destination }} {{ formData.city_destination }} {{ formData.postcode_destination }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ app.url_generator.generate('orders') }}"<button class="btn btn-md btn-primary pull-right">{{ 'View my orders'|trans }}</button></a>
+
+</section><!--/#registration-->
+
+{% endif %}
+
+
+
+
+
+{% endblock %}

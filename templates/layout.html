@@ -42,7 +42,7 @@
                 {% if app.session.get('connected') == false %}
                     <li class="{% if app.request.attributes.get('_route') == 'login' %}active{% endif %}" ><a href="{{ app.url_generator.generate('login') }}">{{ 'Login'|trans }}</a></li>
                 {% else %}
-                <li class="{% if app.request.attributes.get('_route') == 'orders' %}active{% endif %}" ><a href="{{ app.url_generator.generate('orders') }}">{{ 'orders'|trans }}</a></li>
+                <li class="{% if (app.request.attributes.get('_route') == 'orders' or app.request.attributes.get('_route') == 'order' )  %}active{% endif %}" ><a href="{{ app.url_generator.generate('orders') }}">{{ 'orders'|trans }}</a></li>
                 <li ><a href="{{ app.url_generator.generate('logout') }}">{{ 'Logout'|trans }}</a></li>
                 {% endif %}
             </ul>

@@ -14,7 +14,7 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
     //$lieux = $app['lieu_repository']->getLieuClient(11);
 
 
-    echo count($app['serviceCP_repository']->getAllServiceCP());
+    //echo count($app['serviceCP_repository']->getAllServiceCP());
 
     $data = array(
         'address' => '',
@@ -24,6 +24,8 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
         'city_destination' => '',
         'postcode_destination' => ''
     );
+
+    $order_ok = false;
 
     /**
      * Creating form
@@ -53,7 +55,7 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
             'attr' => array('placeholder' => 'Postcode'),
             'constraints' => array(new Assert\NotBlank())
         ))
-        ->add('date', 'date', array(
+        ->add('datetime', 'datetime', array(
             'attr' => array('placeholder' => 'When'),
             'constraints' => array(new Assert\NotBlank())
         ))
@@ -61,17 +63,19 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
 
     $form->handleRequest($request);
 
+    $formData = array();
+
     if ($form->isValid()) {
         $formData = $form->getData();
 
         $lieu = $app['lieu_repository']->saveLieu(new Lieu($formData['address'], $formData['city'], $formData['postcode']));
         $lieuDestination = $app['lieu_repository']->saveLieu(new Lieu($formData['address_destination'], $formData['city_destination'], $formData['postcode_destination']));
 
-        $reservation = $app['reservation_repository']->createReservation($formData['date'],$app['session']->get('user'),$lieu,$lieuDestination);
+        $reservation = $app['reservation_repository']->createReservation($formData['datetime'],$app['session']->get('user'),$lieu,$lieuDestination);
         $reservation = $app['reservation_repository']->saveReservation($reservation);
 
-        return $app->redirect('/');
+        $order_ok = true;
     }
 
-    return $app['twig']->render('orders.html', array('orders' => $orders, 'form' => $form->createView()));
+    return $app['twig']->render('order.html', array('order_ok'=> $order_ok, 'formData' => $formData, 'form' => $form->createView()));
 })->bind('order');

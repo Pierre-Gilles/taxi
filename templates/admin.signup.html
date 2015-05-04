@@ -7,14 +7,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h1>{{ 'My clients'|trans}}</h1>
-                <p>{{'Visualize your clients '|trans}}</p>
+                <h1>Registration</h1>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
             </div>
             <div class="col-sm-6">
                 <ul class="breadcrumb pull-right">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="#">Pages</a></li>
-                    <li class="active">{{ 'My clients'|trans}}</li>
+                    <li class="active">Registration</li>
                 </ul>
             </div>
         </div>
@@ -22,50 +22,27 @@
 </section><!--/#title-->
 
 <section id="registration" class="container">
+
     <ul class="portfolio-filter">
         <li><a class="btn btn-default {% if app.request.attributes.get('_route') == 'admin' %}active{% endif %}" href="{{ app.url_generator.generate('admin') }}" >{{'admin'|trans}}</a></li>
         <li><a class="btn btn-default {% if app.request.attributes.get('_route') == 'adminassign' %}active{% endif %}" href="{{ app.url_generator.generate('adminassign') }}" >{{'Assign'|trans}}</a></li>
         <li><a class="btn btn-default {% if app.request.attributes.get('_route') == 'adminsignup' %}active{% endif %}" href="{{ app.url_generator.generate('adminsignup') }}" >{{'Create admin accout'|trans}}</a></li>
     </ul>
 
-    <h3>{{ app.session.get('chauffeur').nomChauffeur }} {{ app.session.get('chauffeur').prenomChauffeur }}</h3>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>{{ 'reference'|trans }}</th>
-            <th>{{ 'client'|trans }}</th>
-            <th>{{ 'location_time'|trans }}</th>
-            <th>{{ 'departure'|trans }}</th>
-            <th>{{ 'arrival'|trans }}</th>
-        </tr>
-        </thead>
-        <tbody>
+    {% if signup_ok == false %}
+    <form class="center" role="form" method="POST" action="" >
 
-        {% for order in orders %}
-        <tr>
-            <th>{{order.slug|upper}}</th>
-            <td>{{order.nomUtilisateur }} {{ order.prénomUtilisateur }}</td>
-            <td>{{ order.datetimeReservation|localizeddate('full', 'medium', app.request.locale)|capitalize  }}</td>
-            <td>{{order.Adresse}} {{order.Ville}} {{order.codePostal}}</td>
-            <td>{{order.AdresseDest}} {{order.VilleDest}} {{order.codePostalDest}}</td>
-        </tr>
-        {% endfor %}
 
-        </tbody>
-    </table>
+        <fieldset class="registration-form">
+            {{ form_widget(form) }}
+            <input type="submit" class="form-control" value="{{ 'create_account'|trans }}" />
+        </fieldset>
+    </form>
 
-    {% if orders|length == 0 %}
-    <p class="alert alert-info text-center">{{'No orders'|trans}}</p>
+    {% else %}
+    <p class="alert alert-success">{{ 'signup_admin_ok'|trans }}</p>
     {% endif %}
-
-
-
-
 </section><!--/#registration-->
-
-
-
-
 
 {% endblock %}

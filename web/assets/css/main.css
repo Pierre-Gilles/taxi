@@ -1088,6 +1088,6 @@ ul.faq li > div h3 {
   margin-bottom: 150px;
 }
 
-select {
+.command_zone select {
   max-width:100px;
 }

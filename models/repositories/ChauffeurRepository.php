@@ -10,6 +10,23 @@ class ChauffeurRepository{
 		$this->chauffeurMapper = $chauffeurMapper;
     }
 
+	public function createChauffeur($nomUtilisateur, $prenomUtilisateur, $mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur){
+		$motdepasseUtilisateur = password_hash($motdepasseUtilisateur, PASSWORD_DEFAULT);
+		return new Chauffeur($nomUtilisateur, $prenomUtilisateur,$mailUtilisateur, $motdepasseUtilisateur,$numeroTelUtilisateur);
+	}
+
+	public function saveChauffeur(Chauffeur $chauffeur){
+		$sql = "INSERT INTO Chauffeur(nomChauffeur, prénomChauffeur, mailChauffeur, motdepasseChauffeur,numeroTelChauffeur) ";
+		$sql .= " VALUES(:name,:surname,:mail,:password,:phone) ";
+		$statement = $this->db->prepare($sql);
+		$statement->bindValue("name", $chauffeur->getNomChauffeur());
+		$statement->bindValue("surname", $chauffeur->getPrenomChauffeur());
+		$statement->bindValue("mail", $chauffeur->getMailChauffeur());
+		$statement->bindValue("password", $chauffeur->getMotdepasseChauffeur());
+		$statement->bindValue("phone", $chauffeur->getNumeroTelChauffeur());
+		$statement->execute();
+	}
+
 	public function login($mail,$password){
 		$sql = "SELECT * FROM Chauffeur WHERE mailChauffeur = ?";
 		$chauffeur = $this->db->fetchAssoc($sql, array($mail));
@@ -25,10 +42,10 @@ class ChauffeurRepository{
 		$statement = $this->db->prepare("SELECT * FROM chauffeur");
 		$statement->execute();
 		$chauffeurs = $statement->fetchAll();
-		$chauffeurMapper = new ChauffeurMapper();
+		/*$chauffeurMapper = new ChauffeurMapper();
 		for($i = 0; $i < count($chauffeurs); $i++){
 			$chauffeurs[$i] = $chauffeurMapper->transform($chauffeurs[$i]);
-		}
+		}*/
 		return $chauffeurs;
 	}
 

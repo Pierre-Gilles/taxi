@@ -16,10 +16,11 @@ contactmessage1: Une question ? Un avis ? Nous sommes ravis de discuter avec vou
 contactmessage2: Laissez-nous un petit mot en utilisant le formulaire ci-dessous.
 Your Message: Votre message
 login: Se connecter
-logintext1: Pour accéder à vos informations, connectez-vous.
+logintext1: Pour accéder à vos informations, connectez-vous ou
+logintext2: Inscrivez vous afin de réserver votre taxi.
 registration: S'inscrire
 registrationtext1: Pour tous vos déplacement professionnels ou privés, la réservation en ligne est une solution simple et rapide.
-registrationtext2: Inscrivez vous afin de réserver votre taxi à l'avance.
+registrationtext2: Inscrivez vous afin de réserver votre taxi.
 connexion: Connexion
 Password: Mot de passe
 create_account: Inscription
@@ -48,5 +49,9 @@ My Dashboard: Mon tableau de bord
 change_language: English
 Maker_a_new_order: Effectuer une nouvelle réservation
 Create_account: Créer mon compte
+<<<<<<< HEAD
+Home: Acceuil
+=======
 Password and email does not match: Email ou Mot de passe non valide
 
+>>>>>>> 205ef7f0aab0b068401fa5390ed6f371ac09bdb9

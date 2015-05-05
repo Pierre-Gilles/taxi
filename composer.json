@@ -25,7 +25,8 @@
         "symfony/yaml": "~2.6",
         "symfony/security-csrf": "~2.6",
         "twig/extensions": "^1.2",
-        "swiftmailer/swiftmailer": "^5.4"
+        "swiftmailer/swiftmailer": "^5.4",
+        "ivkos/pushbullet": "^3.1"
     },
     "autoload": {
         "psr-0": { "": "src/" }

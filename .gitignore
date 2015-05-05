@@ -11,3 +11,4 @@ nbproject
 database.php
 theme
 composer.lock
+pushbullet_conf.php

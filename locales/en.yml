@@ -43,6 +43,7 @@ Valid: Validate
 Assign: Assigned to driver
 signup_admin_ok: Log Out done
 orders: My orders
+Orders: My orders
 make_a_reservation: Book a taxi
 adminlogin: Admin access log In
 adminsignup: Admin access log Out
@@ -55,4 +56,18 @@ Home: Home
 Create_account: Create Account
 Password and email does not match: Password and email does not match
 reservation_ok: Your demand for reservation has been successfully sent. We will get back to you by email within a 48 hour delays.
-order: Commander un taxi
+order: Book a taxi
+order_taxi: Book
+make_reservation: Book a taxi
+Datetime: Time of pick up
+Address: Address
+when: When
+Postcode: Zip code
+new order: New order
+Postcode destination: Zip code
+City destination: City
+City: City
+Address destination: Address
+where_pickedup: Where do you want to be picked up
+where_togo: Where do you want to go
+

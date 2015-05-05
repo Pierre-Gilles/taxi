@@ -41,6 +41,7 @@ Valid: Valider
 Assign: Assigné au chauffeur
 signup_admin_ok: Déconnexion effectuée.
 orders: Mes commandes
+Orders: Mes commandes
 make_a_reservation: Réserver
 adminlogin: Connexion accès admin
 adminsignup: Déonnexion accès admin
@@ -52,4 +53,21 @@ Create_account: Créer mon compte
 Home: Accueil
 Password and email does not match: Email ou Mot de passe non valide
 reservation_ok: Votre demande de réservation a bien été envoyé. Nous reviendrons vers vous par email dans un delais de 48 heures.
-order: Book a taxi
+order: Commander un taxi
+order_taxi: Commander un taxi
+make_reservation: Commander un taxi
+arrival: Destination
+Datetime: Heure de prise en charge
+Address: Adresse
+when: Quand
+City: Ville
+back_to_my_orders: Retour à mes commandes
+Postcode: Code Postal
+new order: Nouvelle commande
+Postcode destination: Code Postal
+City destination: Ville de destination
+Address destination: Adresse
+where_pickedup: Où souhaitez-vous être pris en charge
+where_togo: Où souhaitez-vous aller
+
+

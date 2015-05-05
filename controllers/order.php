@@ -74,9 +74,18 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
         $reservation = $app['reservation_repository']->saveReservation($reservation);
 
         $order_ok = true;
-        $pb = new Pushbullet\Pushbullet($app['pushbullet_options']);
+        Pushbullet\Connection::setCurlCallback(function ($curl) {
+            // Get a CA certificate bundle here:
+            // https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt
+            curl_setopt($curl, CURLOPT_CAINFO, 'C:\Users\Aurore\Downloads\ca-bundle.crt');
 
-        $pb->device("OnePlus A0001")->pushNote("Nouvelle commande", $app['session']->get('user')->getPrenomUtilisateur().' '.$app['session']->get('user')->getnomUtilisateur());
+            // Not recommended! Makes communication vulnerable to MITM attacks:
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        });
+
+        $pb = new Pushbullet\Pushbullet($app['pushbullet_options']);
+        $adresse = $lieu->getAdresseLieu().' '.$lieu->getCodePostalLieu().' '.$lieu->getVilleLieu();
+        $pb->device("OnePlus A0001")->pushLink("Nouvelle commande","https://www.google.fr/maps/place/".urlencode($adresse) ,$app['session']->get('user')->getPrenomUtilisateur().' '.$app['session']->get('user')->getnomUtilisateur());
     }
 
     return $app['twig']->render('order.html', array('order_ok'=> $order_ok, 'formData' => $formData, 'form' => $form->createView()));

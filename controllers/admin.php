@@ -89,7 +89,7 @@ $app->match('/{_locale}/admin/login', function (Request $request) use ($app) {
             $app['session']->set('chauffeur', $chauffeur);
             return $app->redirect($app['url_generator']->generate('admin'));
         }else{
-            $form->addError(new FormError('Password and email does not match'));
+            $form->addError(new FormError($app['translator']->trans('Password and email does not match')));
         }
     }
 

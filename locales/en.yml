@@ -16,10 +16,11 @@ contactmessage1: A question? An opinion? We are delighted to discuss with you.
 contactmessage2: Leave us a line using the form below.
 Your Message: Your message
 login: Log In
-logintext1: Sign In to access your information.
+logintext1: Sign In to access your information or
+logintext2: Register to book a taxi.
 registration: Sign Up
 registrationtext1: For all your professional or private journeys, online booking is a simple and quick solution.
-registrationtext2: Register to reserve your taxi in advance.
+registrationtext2: Register to book your taxi in advance.
 connexion: Log In
 Password: Password
 create_account: Sign Up
@@ -49,5 +50,5 @@ Visualize your rides: Visualize your rides
 My Dashboard: My dashboard
 change_language: Français
 Maker_a_new_order: Rebook
-Create_account: Create Account
-
+Create_account: Register
+Home: Home

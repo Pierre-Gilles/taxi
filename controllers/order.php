@@ -74,6 +74,9 @@ $app->match('/{_locale}/order', function (Request $request) use ($app) {
         $reservation = $app['reservation_repository']->saveReservation($reservation);
 
         $order_ok = true;
+        $pb = new Pushbullet\Pushbullet($app['pushbullet_options']);
+
+        $pb->device("OnePlus A0001")->pushNote("Nouvelle commande", $app['session']->get('user')->getPrenomUtilisateur().' '.$app['session']->get('user')->getnomUtilisateur());
     }
 
     return $app['twig']->render('order.html', array('order_ok'=> $order_ok, 'formData' => $formData, 'form' => $form->createView()));

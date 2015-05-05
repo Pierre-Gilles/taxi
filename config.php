@@ -127,6 +127,11 @@ if($app['debug']) {
     ));
 }
 
+
+$app['pushbullet_options'] = $app->share(function() use ($app) {
+    return require  __DIR__."/pushbullet_conf.php";
+});
+
 /**
  * Adding swiftMailerServiceProvider to send mail
  */

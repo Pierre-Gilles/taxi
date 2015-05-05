@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Validator\Constraints as Assert;
+use Silex\Application\TranslationTrait;
 
 $app->match('/{_locale}/login', function (Request $request) use ($app) {
 
@@ -41,7 +42,7 @@ $app->match('/{_locale}/login', function (Request $request) use ($app) {
             $app['session']->set('user', $user);
             return $app->redirect('/');
         }else{
-            $form->addError(new FormError('Password and email does not match'));
+            $form->addError(new FormError($app['translator']->trans('Password and email does not match')));
         }
     }
 
